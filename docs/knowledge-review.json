@@ -1,0 +1,1058 @@
+[
+  {
+    "fact_id": "e7565a4831cf81dd396e4def",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/学习生活/常用网站.md",
+    "line_start": 104,
+    "line_end": 104,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/学习生活/常用网站.md",
+      "heading": "杂项 / [本科教务管理系统](https://jwgl.bupt.edu.cn)",
+      "quote": "本科教务管理系统是北邮学生查询课表、成绩、选课等信息的主要平台。**初始密码为 8 位生日**。",
+      "subject": {
+        "name": "课表查询",
+        "type": "Service",
+        "campus": "shared",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "USES_PLATFORM",
+      "object": {
+        "name": "本科教务管理系统",
+        "type": "Platform",
+        "campus": "shared",
+        "aliases": [],
+        "url": "https://jwgl.bupt.edu.cn"
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "771264e9a6ced0f55118e14f",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/学习生活/常用网站.md",
+    "line_start": 104,
+    "line_end": 104,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/学习生活/常用网站.md",
+      "heading": "杂项 / [本科教务管理系统](https://jwgl.bupt.edu.cn)",
+      "quote": "本科教务管理系统是北邮学生查询课表、成绩、选课等信息的主要平台。**初始密码为 8 位生日**。",
+      "subject": {
+        "name": "成绩查询",
+        "type": "Service",
+        "campus": "shared",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "USES_PLATFORM",
+      "object": {
+        "name": "本科教务管理系统",
+        "type": "Platform",
+        "campus": "shared",
+        "aliases": [],
+        "url": "https://jwgl.bupt.edu.cn"
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "9d5e2360f9631c06c044596f",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/学习生活/常用网站.md",
+    "line_start": 104,
+    "line_end": 104,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/学习生活/常用网站.md",
+      "heading": "杂项 / [本科教务管理系统](https://jwgl.bupt.edu.cn)",
+      "quote": "本科教务管理系统是北邮学生查询课表、成绩、选课等信息的主要平台。**初始密码为 8 位生日**。",
+      "subject": {
+        "name": "选课",
+        "type": "Service",
+        "campus": "shared",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "USES_PLATFORM",
+      "object": {
+        "name": "本科教务管理系统",
+        "type": "Platform",
+        "campus": "shared",
+        "aliases": [],
+        "url": "https://jwgl.bupt.edu.cn"
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "35a6cf7aa49d34a05c7cbb8b",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/学习生活/毕业要求.md",
+    "line_start": 47,
+    "line_end": 47,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/学习生活/毕业要求.md",
+      "heading": "作为毕业要求的 / 劳动教育学时[^2]",
+      "quote": "劳动学时可通过「本科教务管理系统」->「劳动与实践」->「劳动教育学时查询」进行查询。",
+      "subject": {
+        "name": "劳动教育学时查询",
+        "type": "Service",
+        "campus": "shared",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "USES_PLATFORM",
+      "object": {
+        "name": "本科教务管理系统",
+        "type": "Platform",
+        "campus": "shared",
+        "aliases": [],
+        "url": "https://jwgl.bupt.edu.cn"
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "349ed5897ee70851331a057b",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/学习生活/体育运动.md",
+    "line_start": 81,
+    "line_end": 81,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/学习生活/体育运动.md",
+      "heading": "体育运动达标测试 / 确认成绩合格",
+      "quote": "可以在[教务系统](/学习生活/常用网站#本科教务管理系统)的「成绩与证明->体育运动达标」中进行查询。",
+      "subject": {
+        "name": "体育运动达标成绩查询",
+        "type": "Service",
+        "campus": "shared",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "USES_PLATFORM",
+      "object": {
+        "name": "本科教务管理系统",
+        "type": "Platform",
+        "campus": "shared",
+        "aliases": [],
+        "url": "https://jwgl.bupt.edu.cn"
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "fd35dc8adecdedf15705be0d",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/学习生活/转专业.md",
+    "line_start": 143,
+    "line_end": 143,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/学习生活/转专业.md",
+      "heading": "结果查询",
+      "quote": "在[教务管理系统](https://jwgl.bupt.edu.cn)的「学籍与培养」->「学籍异动」信息中查询。",
+      "subject": {
+        "name": "转专业结果查询",
+        "type": "Service",
+        "campus": "shared",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "USES_PLATFORM",
+      "object": {
+        "name": "本科教务管理系统",
+        "type": "Platform",
+        "campus": "shared",
+        "aliases": [],
+        "url": "https://jwgl.bupt.edu.cn"
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "549065e66a6b326a8df1ce03",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/学习生活/校园网.md",
+    "line_start": 26,
+    "line_end": 26,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/学习生活/校园网.md",
+      "heading": "网关账号",
+      "quote": "如需修改密码，可在「企业微信->校园网」进行修改，或登录[校园网自服务系统](https://netaccount.bupt.edu.cn/)进行修改。",
+      "subject": {
+        "name": "校园网密码修改",
+        "type": "Service",
+        "campus": "shared",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "USES_PLATFORM",
+      "object": {
+        "name": "企业微信",
+        "type": "Platform",
+        "campus": "shared",
+        "aliases": [],
+        "url": null
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "3987a544a7ffe96d16bad308",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/学习生活/校园网.md",
+    "line_start": 26,
+    "line_end": 26,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/学习生活/校园网.md",
+      "heading": "网关账号",
+      "quote": "如需修改密码，可在「企业微信->校园网」进行修改，或登录[校园网自服务系统](https://netaccount.bupt.edu.cn/)进行修改。",
+      "subject": {
+        "name": "校园网密码修改",
+        "type": "Service",
+        "campus": "shared",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "USES_PLATFORM",
+      "object": {
+        "name": "校园网自服务系统",
+        "type": "Platform",
+        "campus": "shared",
+        "aliases": [],
+        "url": "https://netaccount.bupt.edu.cn/"
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "54e99db5c0d6b413abf441fe",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/学习生活/校园网.md",
+    "line_start": 42,
+    "line_end": 42,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/学习生活/校园网.md",
+      "heading": "北邮 VPN / [aTrust VPN](https://vpn.bupt.edu.cn/)",
+      "quote": "不同于网关账号，aTrust VPN 需要使用「[企业微信](/学习生活/常用网站#企业微信)-校园网」提供的动态密码进行登录。",
+      "subject": {
+        "name": "aTrust VPN登录",
+        "type": "Service",
+        "campus": "shared",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "REQUIRES",
+      "object": {
+        "name": "企业微信校园网提供的动态密码",
+        "type": "Condition",
+        "campus": "shared",
+        "aliases": [],
+        "url": null
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "af622372b2ceed14eeabdb21",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/学习生活/体育运动.md",
+    "line_start": 27,
+    "line_end": 27,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/学习生活/体育运动.md",
+      "heading": "校园乐跑（课外锻炼）",
+      "quote": "校园乐跑的要求是男生 100 km/学期，女生 85 km/学期，必须使用指定的微信小程序「BUPT智慧体育」记录里程。",
+      "subject": {
+        "name": "校园乐跑里程记录",
+        "type": "Service",
+        "campus": "shared",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "USES_PLATFORM",
+      "object": {
+        "name": "BUPT智慧体育",
+        "type": "Platform",
+        "campus": "shared",
+        "aliases": [],
+        "url": null
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "07287437674a469ae2e04ad0",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/学习生活/奖学金相关.md",
+    "line_start": 102,
+    "line_end": 102,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/学习生活/奖学金相关.md",
+      "heading": "部分奖学金申请要求 / 企业及其他社会捐赠奖学金",
+      "quote": "学生可以通过学校学工系统中的「奖学金」栏目查询具体奖项及申请要求",
+      "subject": {
+        "name": "社会捐赠奖学金查询",
+        "type": "Service",
+        "campus": "shared",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "USES_PLATFORM",
+      "object": {
+        "name": "学工系统",
+        "type": "Platform",
+        "campus": "shared",
+        "aliases": [],
+        "url": null
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "2f4d3f7311fb2aec11283ca1",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/学习生活/课程安排.md",
+    "line_start": 151,
+    "line_end": 151,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/学习生活/课程安排.md",
+      "heading": "选课 / 公选课（全校任选课） / 线上课（智慧树）",
+      "quote": "这些线上课统一在网页版的[智慧树平台](https://www.zhihuishu.com/)或客户端的**知到 APP** 中进行。",
+      "subject": {
+        "name": "线上公选课学习",
+        "type": "Service",
+        "campus": "shared",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "USES_PLATFORM",
+      "object": {
+        "name": "智慧树平台",
+        "type": "Platform",
+        "campus": "shared",
+        "aliases": [],
+        "url": "https://www.zhihuishu.com/"
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "882cf80dcbf285d1f90dea95",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/新生入学/入学准备.md",
+    "line_start": 15,
+    "line_end": 15,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/新生入学/入学准备.md",
+      "heading": "入学前 / 学号查询",
+      "quote": "可以通过迎新系统的[本科生学号查询](https://stu.bupt.edu.cn/xsfw/sys/xhcxappcqjtu/*default/index.do?xhcx#/xhcx)功能查询学号。",
+      "subject": {
+        "name": "本科生学号查询",
+        "type": "Service",
+        "campus": "shared",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "USES_PLATFORM",
+      "object": {
+        "name": "迎新系统",
+        "type": "Platform",
+        "campus": "shared",
+        "aliases": [],
+        "url": "https://welcome.bupt.edu.cn"
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "d60f9e21fdccf471d8493095",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/新生入学/开学考试.md",
+    "line_start": 7,
+    "line_end": 7,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/新生入学/开学考试.md",
+      "heading": "",
+      "quote": "开学考试一般位于正式开学前几周，通过iTEST线上平台进行考试[^1]，考试时间为 90 分钟。",
+      "subject": {
+        "name": "新生入学英语分级测试",
+        "type": "Service",
+        "campus": "shared",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "USES_PLATFORM",
+      "object": {
+        "name": "iTEST",
+        "type": "Platform",
+        "campus": "shared",
+        "aliases": [],
+        "url": null
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "7c6a741239a679df168b19bb",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/沙河校区/日常活动.md",
+    "line_start": 47,
+    "line_end": 47,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/沙河校区/日常活动.md",
+      "heading": "体育设施",
+      "quote": "通过「小程序BUPT智慧体育->场馆预约」可以查看可预约的体育场馆。除了需要预约的体育场馆外，其它体育设施均可直接使用。",
+      "subject": {
+        "name": "沙河体育场馆预约查询",
+        "type": "Service",
+        "campus": "shahe",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "USES_PLATFORM",
+      "object": {
+        "name": "BUPT智慧体育",
+        "type": "Platform",
+        "campus": "shared",
+        "aliases": [],
+        "url": null
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "473b3f403cdfaf2b4ad11395",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/海淀校区/日常活动.md",
+    "line_start": 32,
+    "line_end": 32,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/海淀校区/日常活动.md",
+      "heading": "体育设施",
+      "quote": "通过「小程序BUPT智慧体育->场馆预约」可以查看可预约的体育场馆。",
+      "subject": {
+        "name": "海淀体育场馆预约查询",
+        "type": "Service",
+        "campus": "haidian",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "USES_PLATFORM",
+      "object": {
+        "name": "BUPT智慧体育",
+        "type": "Platform",
+        "campus": "shared",
+        "aliases": [],
+        "url": null
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "7032689d997d3fbb0258837f",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/沙河校区/日常活动.md",
+    "line_start": 23,
+    "line_end": 23,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/沙河校区/日常活动.md",
+      "heading": "图书馆 / 主馆",
+      "quote": "图书馆二楼提供查询资料的临时电脑，也可进行自助打印。打印价格为 0.25 元/张，偏贵，但隐私性比打印店更强。",
+      "subject": {
+        "name": "沙河图书馆二楼",
+        "type": "Place",
+        "campus": "shahe",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "PROVIDES",
+      "object": {
+        "name": "沙河图书馆自助打印",
+        "type": "Service",
+        "campus": "shahe",
+        "aliases": [],
+        "url": null
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "b593fedf18d1189dd8c6ef8d",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/海淀校区/日常活动.md",
+    "line_start": 17,
+    "line_end": 17,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/海淀校区/日常活动.md",
+      "heading": "图书馆 / 自助打印",
+      "quote": "海淀校区图书馆二楼支持自助打印，需要自行携带电脑安装打印软件后进行打印。",
+      "subject": {
+        "name": "海淀图书馆二楼",
+        "type": "Place",
+        "campus": "haidian",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "PROVIDES",
+      "object": {
+        "name": "海淀图书馆自助打印",
+        "type": "Service",
+        "campus": "haidian",
+        "aliases": [],
+        "url": null
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "221946f0aab27b1d489ad3ae",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/海淀校区/日常活动.md",
+    "line_start": 17,
+    "line_end": 17,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/海淀校区/日常活动.md",
+      "heading": "图书馆 / 自助打印",
+      "quote": "海淀校区图书馆二楼支持自助打印，需要自行携带电脑安装打印软件后进行打印。",
+      "subject": {
+        "name": "海淀图书馆自助打印",
+        "type": "Service",
+        "campus": "haidian",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "REQUIRES",
+      "object": {
+        "name": "自带电脑并安装打印软件",
+        "type": "Condition",
+        "campus": "haidian",
+        "aliases": [],
+        "url": null
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "51622524f575a50aae66a077",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/沙河校区/日常活动.md",
+    "line_start": 53,
+    "line_end": 53,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/沙河校区/日常活动.md",
+      "heading": "体育设施 / 健身房",
+      "quote": "免费。位于学生活动中心地下一层，开放时间 08:40-21:40。无洗澡间，不能洗澡。",
+      "subject": {
+        "name": "沙河健身房",
+        "type": "Place",
+        "campus": "shahe",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "LOCATED_IN",
+      "object": {
+        "name": "沙河学生活动中心地下一层",
+        "type": "Place",
+        "campus": "shahe",
+        "aliases": [],
+        "url": null
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "dfad5fffa75efefce4ac26e5",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/沙河校区/日常活动.md",
+    "line_start": 57,
+    "line_end": 57,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/沙河校区/日常活动.md",
+      "heading": "体育设施 / 乒乓球场",
+      "quote": "免费。位于教学实验综合楼 S 地下一层，开放时间 09:40 - 21:40。",
+      "subject": {
+        "name": "沙河乒乓球场",
+        "type": "Place",
+        "campus": "shahe",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "LOCATED_IN",
+      "object": {
+        "name": "沙河教学实验综合楼S地下一层",
+        "type": "Place",
+        "campus": "shahe",
+        "aliases": [],
+        "url": null
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "918ceee93108d0b4cdf89c0f",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/沙河校区/生活服务.md",
+    "line_start": 57,
+    "line_end": 57,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/沙河校区/生活服务.md",
+      "heading": "快递收发",
+      "quote": "快递站位于雁南 2、3 号楼负一层。",
+      "subject": {
+        "name": "沙河快递站",
+        "type": "Place",
+        "campus": "shahe",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "LOCATED_IN",
+      "object": {
+        "name": "沙河雁南2、3号楼负一层",
+        "type": "Place",
+        "campus": "shahe",
+        "aliases": [],
+        "url": null
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "ebc3c318ae6c60931b3fcbc1",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/沙河校区/生活服务.md",
+    "line_start": 79,
+    "line_end": 79,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/沙河校区/生活服务.md",
+      "heading": "ATM",
+      "quote": "工行 ATM 机位于图书馆 1 楼南侧。",
+      "subject": {
+        "name": "沙河工行ATM",
+        "type": "Place",
+        "campus": "shahe",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "LOCATED_IN",
+      "object": {
+        "name": "沙河图书馆1楼南侧",
+        "type": "Place",
+        "campus": "shahe",
+        "aliases": [],
+        "url": null
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "09aa6f3264b7b68cf4798210",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/海淀校区/生活服务.md",
+    "line_start": 51,
+    "line_end": 51,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/海淀校区/生活服务.md",
+      "heading": "浴室",
+      "quote": "公共浴室共三层，位于综合服务楼。",
+      "subject": {
+        "name": "海淀公共浴室",
+        "type": "Place",
+        "campus": "haidian",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "LOCATED_IN",
+      "object": {
+        "name": "海淀综合服务楼",
+        "type": "Place",
+        "campus": "haidian",
+        "aliases": [],
+        "url": null
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "27310a91bdbda0db38568f87",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/海淀校区/生活服务.md",
+    "line_start": 170,
+    "line_end": 170,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/海淀校区/生活服务.md",
+      "heading": "就医 / 关于科室和项目 / 口腔科",
+      "quote": "口腔科首诊可通过“北邮校医院”公众号进行预约挂号。",
+      "subject": {
+        "name": "海淀校医院口腔科首诊预约",
+        "type": "Service",
+        "campus": "haidian",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "USES_PLATFORM",
+      "object": {
+        "name": "北邮校医院公众号",
+        "type": "Platform",
+        "campus": "shared",
+        "aliases": [],
+        "url": null
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "cdaf0f03932e94ab6bb63cbe",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/沙河校区/住宿条件.md",
+    "line_start": 133,
+    "line_end": 133,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/沙河校区/住宿条件.md",
+      "heading": "宿舍生活 / 水电费",
+      "quote": "电费每人每学期赠送 40 度（总量取决于宿舍人数），用完需自行充值。电费价格为 0.48 元/度。充值入口位于「企业微信-宿舍用电」一栏。",
+      "subject": {
+        "name": "沙河宿舍电费充值",
+        "type": "Service",
+        "campus": "shahe",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "USES_PLATFORM",
+      "object": {
+        "name": "企业微信",
+        "type": "Platform",
+        "campus": "shared",
+        "aliases": [],
+        "url": null
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "ed695b300a053be39518c073",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/沙河校区/餐饮美食.md",
+    "line_start": 27,
+    "line_end": 27,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/沙河校区/餐饮美食.md",
+      "heading": "校内餐厅 / e 键订餐",
+      "quote": "在[企业微信](/学习生活/常用网站#企业微信)中，可以在早餐、午餐和晚餐的食堂开放时间段进行手机点单，并且支持**外带自取**和**配送**（早餐配送时间为 9:00 前，午餐配送时间为 13:00 前，晚餐配送时间为 20:00 前）两种方式。",
+      "subject": {
+        "name": "沙河e键订餐",
+        "type": "Service",
+        "campus": "shahe",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "USES_PLATFORM",
+      "object": {
+        "name": "企业微信",
+        "type": "Platform",
+        "campus": "shared",
+        "aliases": [],
+        "url": null
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "7b004ecc1f17eb23f54cfadc",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/沙河校区/餐饮美食.md",
+    "line_start": 37,
+    "line_end": 37,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/沙河校区/餐饮美食.md",
+      "heading": "其它校内餐饮 / 肯德基&肯悦咖啡",
+      "quote": "位于风味餐厅一楼。",
+      "subject": {
+        "name": "沙河肯德基&肯悦咖啡",
+        "type": "Place",
+        "campus": "shahe",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "LOCATED_IN",
+      "object": {
+        "name": "沙河风味餐厅一楼",
+        "type": "Place",
+        "campus": "shahe",
+        "aliases": [],
+        "url": null
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "2a4b6c95768222f83cd8deb7",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/沙河校区/餐饮美食.md",
+    "line_start": 47,
+    "line_end": 47,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/沙河校区/餐饮美食.md",
+      "heading": "其它校内餐饮 / 必胜客",
+      "quote": "位于风味餐厅一楼，与肯德基相邻。",
+      "subject": {
+        "name": "沙河必胜客",
+        "type": "Place",
+        "campus": "shahe",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "LOCATED_IN",
+      "object": {
+        "name": "沙河风味餐厅一楼",
+        "type": "Place",
+        "campus": "shahe",
+        "aliases": [],
+        "url": null
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "9e17988266c08f128381f141",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/沙河校区/餐饮美食.md",
+    "line_start": 57,
+    "line_end": 57,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/沙河校区/餐饮美食.md",
+      "heading": "其它校内餐饮 / 蜜雪冰城",
+      "quote": "位于教工餐厅一楼。",
+      "subject": {
+        "name": "沙河蜜雪冰城",
+        "type": "Place",
+        "campus": "shahe",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "LOCATED_IN",
+      "object": {
+        "name": "沙河教工餐厅一楼",
+        "type": "Place",
+        "campus": "shahe",
+        "aliases": [],
+        "url": null
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "161a341999540eac8741fc06",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/沙河校区/餐饮美食.md",
+    "line_start": 71,
+    "line_end": 71,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/沙河校区/餐饮美食.md",
+      "heading": "其它校内餐饮 / 库迪咖啡",
+      "quote": "位于教工餐厅一楼，和蜜雪冰城在同一间小屋。",
+      "subject": {
+        "name": "沙河库迪咖啡",
+        "type": "Place",
+        "campus": "shahe",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "LOCATED_IN",
+      "object": {
+        "name": "沙河教工餐厅一楼",
+        "type": "Place",
+        "campus": "shahe",
+        "aliases": [],
+        "url": null
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "61b687223108526055c13131",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/沙河校区/餐饮美食.md",
+    "line_start": 81,
+    "line_end": 81,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/沙河校区/餐饮美食.md",
+      "heading": "其它校内餐饮 / 虎头军煎饼",
+      "quote": "位于雁北园 1 号楼地下生活服务区。",
+      "subject": {
+        "name": "沙河虎头军煎饼",
+        "type": "Place",
+        "campus": "shahe",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "LOCATED_IN",
+      "object": {
+        "name": "沙河雁北园 1 号楼地下生活服务区",
+        "type": "Place",
+        "campus": "shahe",
+        "aliases": [],
+        "url": null
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  },
+  {
+    "fact_id": "d47efafd5b82f2b28890353b",
+    "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+    "source_path": "src/content/docs/海淀校区/餐饮美食.md",
+    "line_start": 35,
+    "line_end": 35,
+    "reviewer": "Codex (AI-assisted review)",
+    "decision": "source_supported",
+    "basis": "完整段落及标题支持关系；保留校区、阶段和条件；时间费用留在证据中",
+    "fact": {
+      "source_path": "src/content/docs/海淀校区/餐饮美食.md",
+      "heading": "其它校内餐饮",
+      "quote": "蜜雪冰城：营业时间为 9:00-22:30，位于商店街南侧。",
+      "subject": {
+        "name": "海淀蜜雪冰城",
+        "type": "Place",
+        "campus": "haidian",
+        "aliases": [],
+        "url": null
+      },
+      "relation": "LOCATED_IN",
+      "object": {
+        "name": "海淀商店街南侧",
+        "type": "Place",
+        "campus": "haidian",
+        "aliases": [],
+        "url": null
+      },
+      "conflict_key": null,
+      "decision": null
+    }
+  }
+]

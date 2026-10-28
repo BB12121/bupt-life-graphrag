@@ -16,3 +16,5 @@ Base URL 为 `https://dashscope.aliyuncs.com/compatible-mode/v1`。
 模型只生成待审候选；请求超时或无效 JSON 记录为 error，已有图谱可继续离线查询。
 批量请求不会自动重试错误，使用 `extract --model --retry-errors` 显式恢复。
 源文件、标题、完整引文由程序绑定，模型不能替换来源。关系类型、方向、跨校区类型约束经过校验；否定、条件、适用阶段仍需逐条审核。
+
+2026-10-28补充：全量39篇AI辅助覆盖记录、33条共享事实扩充、干净环境复现已完成，见 docs/knowledge-coverage.csv、docs/knowledge-review.json、docs/reproduction.md。团队人工签审与另一位成员复现仍待完成；限额演示API密钥按所有者明确授权纳入 .env。

@@ -1,0 +1,214 @@
+[
+  {
+    "question": "劳动教育学时查询的平台需要什么条件？",
+    "response": {
+      "status": "answered",
+      "reason": null,
+      "knowledge_revision": 2,
+      "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+      "answers": [
+        {
+          "text": "劳动教育学时查询通过平台本科教务管理系统；本科教务管理系统条件为校园网环境。",
+          "entity_ids": [
+            "779ccd608fde8fff9643b841",
+            "febfe5d4970620e2fbb8867c",
+            "4cddd3562a1e5190188d0c8c"
+          ],
+          "path_ids": [
+            "6a9fdadb43d727fbde10036e"
+          ],
+          "evidence_ids": [
+            "2b21501293d3c81e042e03b0",
+            "a6a2455ff2126830493d52fa"
+          ]
+        }
+      ],
+      "paths": [
+        {
+          "id": "6a9fdadb43d727fbde10036e",
+          "branch_id": 0,
+          "nodes": [
+            {
+              "id": "779ccd608fde8fff9643b841",
+              "type": "Service",
+              "name": "劳动教育学时查询",
+              "aliases": [],
+              "campus": "shared",
+              "url": null
+            },
+            {
+              "id": "febfe5d4970620e2fbb8867c",
+              "type": "Platform",
+              "name": "本科教务管理系统",
+              "aliases": [],
+              "campus": "shared",
+              "url": "https://jwgl.bupt.edu.cn"
+            },
+            {
+              "id": "4cddd3562a1e5190188d0c8c",
+              "type": "Condition",
+              "name": "校园网环境",
+              "aliases": [
+                "校园网"
+              ],
+              "campus": "shared",
+              "url": null
+            }
+          ],
+          "edges": [
+            {
+              "subject_id": "779ccd608fde8fff9643b841",
+              "relation": "USES_PLATFORM",
+              "object_id": "febfe5d4970620e2fbb8867c",
+              "evidence_ids": [
+                "2b21501293d3c81e042e03b0"
+              ]
+            },
+            {
+              "subject_id": "febfe5d4970620e2fbb8867c",
+              "relation": "REQUIRES",
+              "object_id": "4cddd3562a1e5190188d0c8c",
+              "evidence_ids": [
+                "a6a2455ff2126830493d52fa"
+              ]
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "2b21501293d3c81e042e03b0",
+          "doc_id": "601fdf09b4bb7a40e1e8c729",
+          "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+          "source_path": "src/content/docs/学习生活/毕业要求.md",
+          "heading": "作为毕业要求的 / 劳动教育学时[^2]",
+          "line_start": 47,
+          "line_end": 47,
+          "quote": "劳动学时可通过「本科教务管理系统」->「劳动与实践」->「劳动教育学时查询」进行查询。",
+          "source_url": "https://github.com/byrdocs/bupt-survival-guide/blob/417fc690834fbc4406f48e503f5ef1f832d495db/src/content/docs/%E5%AD%A6%E4%B9%A0%E7%94%9F%E6%B4%BB/%E6%AF%95%E4%B8%9A%E8%A6%81%E6%B1%82.md#L47-L47"
+        },
+        {
+          "id": "a6a2455ff2126830493d52fa",
+          "doc_id": "24a48dc4ee25e737da3b594b",
+          "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+          "source_path": "src/content/docs/学习生活/常用网站.md",
+          "heading": "杂项 / [本科教务管理系统](https://jwgl.bupt.edu.cn)",
+          "line_start": 102,
+          "line_end": 102,
+          "quote": "**此网站需要校园网环境**。",
+          "source_url": "https://github.com/byrdocs/bupt-survival-guide/blob/417fc690834fbc4406f48e503f5ef1f832d495db/src/content/docs/%E5%AD%A6%E4%B9%A0%E7%94%9F%E6%B4%BB/%E5%B8%B8%E7%94%A8%E7%BD%91%E7%AB%99.md#L102-L102"
+        }
+      ],
+      "warnings": [
+        "依据指南快照；不能确认实时变化。"
+      ],
+      "clarifications": []
+    }
+  },
+  {
+    "question": "体育运动达标成绩查询的平台需要什么条件？",
+    "response": {
+      "status": "answered",
+      "reason": null,
+      "knowledge_revision": 2,
+      "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+      "answers": [
+        {
+          "text": "体育运动达标成绩查询通过平台本科教务管理系统；本科教务管理系统条件为校园网环境。",
+          "entity_ids": [
+            "1ee015a8bc91c882fb8c1b88",
+            "febfe5d4970620e2fbb8867c",
+            "4cddd3562a1e5190188d0c8c"
+          ],
+          "path_ids": [
+            "52075ca1eddfcb4fd768a36e"
+          ],
+          "evidence_ids": [
+            "35a0013c4550b0529f771580",
+            "a6a2455ff2126830493d52fa"
+          ]
+        }
+      ],
+      "paths": [
+        {
+          "id": "52075ca1eddfcb4fd768a36e",
+          "branch_id": 0,
+          "nodes": [
+            {
+              "id": "1ee015a8bc91c882fb8c1b88",
+              "type": "Service",
+              "name": "体育运动达标成绩查询",
+              "aliases": [],
+              "campus": "shared",
+              "url": null
+            },
+            {
+              "id": "febfe5d4970620e2fbb8867c",
+              "type": "Platform",
+              "name": "本科教务管理系统",
+              "aliases": [],
+              "campus": "shared",
+              "url": "https://jwgl.bupt.edu.cn"
+            },
+            {
+              "id": "4cddd3562a1e5190188d0c8c",
+              "type": "Condition",
+              "name": "校园网环境",
+              "aliases": [
+                "校园网"
+              ],
+              "campus": "shared",
+              "url": null
+            }
+          ],
+          "edges": [
+            {
+              "subject_id": "1ee015a8bc91c882fb8c1b88",
+              "relation": "USES_PLATFORM",
+              "object_id": "febfe5d4970620e2fbb8867c",
+              "evidence_ids": [
+                "35a0013c4550b0529f771580"
+              ]
+            },
+            {
+              "subject_id": "febfe5d4970620e2fbb8867c",
+              "relation": "REQUIRES",
+              "object_id": "4cddd3562a1e5190188d0c8c",
+              "evidence_ids": [
+                "a6a2455ff2126830493d52fa"
+              ]
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "35a0013c4550b0529f771580",
+          "doc_id": "c49f69f6d165a584b03f6521",
+          "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+          "source_path": "src/content/docs/学习生活/体育运动.md",
+          "heading": "体育运动达标测试 / 确认成绩合格",
+          "line_start": 81,
+          "line_end": 81,
+          "quote": "可以在[教务系统](/学习生活/常用网站#本科教务管理系统)的「成绩与证明->体育运动达标」中进行查询。",
+          "source_url": "https://github.com/byrdocs/bupt-survival-guide/blob/417fc690834fbc4406f48e503f5ef1f832d495db/src/content/docs/%E5%AD%A6%E4%B9%A0%E7%94%9F%E6%B4%BB/%E4%BD%93%E8%82%B2%E8%BF%90%E5%8A%A8.md#L81-L81"
+        },
+        {
+          "id": "a6a2455ff2126830493d52fa",
+          "doc_id": "24a48dc4ee25e737da3b594b",
+          "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+          "source_path": "src/content/docs/学习生活/常用网站.md",
+          "heading": "杂项 / [本科教务管理系统](https://jwgl.bupt.edu.cn)",
+          "line_start": 102,
+          "line_end": 102,
+          "quote": "**此网站需要校园网环境**。",
+          "source_url": "https://github.com/byrdocs/bupt-survival-guide/blob/417fc690834fbc4406f48e503f5ef1f832d495db/src/content/docs/%E5%AD%A6%E4%B9%A0%E7%94%9F%E6%B4%BB/%E5%B8%B8%E7%94%A8%E7%BD%91%E7%AB%99.md#L102-L102"
+        }
+      ],
+      "warnings": [
+        "依据指南快照；不能确认实时变化。"
+      ],
+      "clarifications": []
+    }
+  }
+]
