@@ -1,0 +1,77 @@
+[
+  {
+    "source_path": "src/content/docs/行话辞典.md",
+    "heading": "X",
+    "quote": "- 新食堂：海淀校区综合食堂。新一/新二/新三分别指综合食堂一层/二层/三层，以此类推。\n- 行保：行政保研，一种保研方式。\n- 学活：学生活动中心，海淀校区与沙河校区各有一栋。",
+    "entity": {
+      "name": "沙河学生活动中心",
+      "type": "Place",
+      "campus": "shahe",
+      "aliases": [
+        "学活",
+        "学生活动中心"
+      ],
+      "url": null
+    }
+  },
+  {
+    "source_path": "src/content/docs/行话辞典.md",
+    "heading": "X",
+    "quote": "- 新食堂：海淀校区综合食堂。新一/新二/新三分别指综合食堂一层/二层/三层，以此类推。\n- 行保：行政保研，一种保研方式。\n- 学活：学生活动中心，海淀校区与沙河校区各有一栋。",
+    "entity": {
+      "name": "海淀学生活动中心",
+      "type": "Place",
+      "campus": "haidian",
+      "aliases": [
+        "学活",
+        "学生活动中心"
+      ],
+      "url": null
+    }
+  },
+  {
+    "source_path": "src/content/docs/行话辞典.md",
+    "heading": "D",
+    "quote": "- 地超：沙河校区地下超市，旁边有电脑维修、眼镜配置、洗头理发等服务。\n- 电元：未来学院「电子信息类（元班）」的简称。",
+    "entity": {
+      "name": "沙河地下超市",
+      "type": "Place",
+      "campus": "shahe",
+      "aliases": [
+        "地超",
+        "地下超市"
+      ],
+      "url": null
+    }
+  },
+  {
+    "source_path": "src/content/docs/新生入学/入学准备.md",
+    "heading": "入学后 / 校园一卡通（学生卡）",
+    "quote": ":::note\n「校园卡」是一个极易引起歧义的概念，也会被有心人利用。建议平常不使用这个词，代之以更精确的用词。",
+    "entity": {
+      "name": "校园一卡通（学生卡）使用",
+      "type": "Service",
+      "campus": "shared",
+      "aliases": [
+        "校园卡",
+        "学生卡使用"
+      ],
+      "url": null
+    }
+  },
+  {
+    "source_path": "src/content/docs/新生入学/入学准备.md",
+    "heading": "入学后 / 校园一卡通（学生卡）",
+    "quote": "- **电话卡**是非必需的。现今各大运营商的流量均可以全国通用，所以到学校完全不必另办新卡，使用旧卡也没问题。\n- **北邮联名银行卡**已在[上文](#银行卡办理和采集)提及，必须自己办，不可找人代劳。\n- **校园一卡通**是学生卡，用于平常的校内支付和身份识别[^1]，需在新生入学登记时领取。\n:::",
+    "entity": {
+      "name": "电话卡办理",
+      "type": "Service",
+      "campus": "shared",
+      "aliases": [
+        "校园卡",
+        "电话卡"
+      ],
+      "url": null
+    }
+  }
+]

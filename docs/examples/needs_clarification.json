@@ -1,0 +1,28 @@
+{
+  "status": "needs_clarification",
+  "reason": "ambiguous_entity",
+  "knowledge_revision": 2,
+  "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+  "answers": [],
+  "paths": [],
+  "evidence": [],
+  "warnings": [
+    "依据指南快照；不能确认实时变化。"
+  ],
+  "clarifications": [
+    {
+      "field": "entity_bindings",
+      "mention": "校园卡",
+      "options": [
+        {
+          "value": "af1aea5ab308bbb5bfd37854",
+          "label": "校园一卡通（学生卡）使用"
+        },
+        {
+          "value": "e7d3dc87349c00ad9bb9b81f",
+          "label": "电话卡办理"
+        }
+      ]
+    }
+  ]
+}

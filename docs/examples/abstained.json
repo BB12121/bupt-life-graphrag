@@ -1,0 +1,13 @@
+{
+  "status": "abstained",
+  "reason": "realtime_unavailable",
+  "knowledge_revision": 2,
+  "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+  "answers": [],
+  "paths": [],
+  "evidence": [],
+  "warnings": [
+    "依据指南快照；不能确认实时变化。"
+  ],
+  "clarifications": []
+}

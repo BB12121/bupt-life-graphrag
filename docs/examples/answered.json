@@ -1,0 +1,564 @@
+{
+  "status": "answered",
+  "reason": null,
+  "knowledge_revision": 2,
+  "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+  "answers": [
+    {
+      "text": "沙河雁南一站式多功能厅提供沙河雁南多功能厅预约；沙河雁南多功能厅预约通过平台网上服务大厅；校外人员入校申请通过平台网上服务大厅。",
+      "entity_ids": [
+        "dda3c55f2199a469ff790f9c",
+        "e5884c1a12ab16f09ef4a812",
+        "ed431229f15b3395813e05bc",
+        "b533eb3a6e521ed28977db62"
+      ],
+      "path_ids": [
+        "7ecf52da9c7d361f25ae7e26"
+      ],
+      "evidence_ids": [
+        "0d07ad9a52889ef1cbd15812",
+        "714c04825cd27a986ee8d2f5"
+      ]
+    },
+    {
+      "text": "沙河雁南一站式多功能厅提供沙河雁南多功能厅预约；沙河雁南多功能厅预约通过平台网上服务大厅；电动自行车校内通行证申请通过平台网上服务大厅。",
+      "entity_ids": [
+        "dda3c55f2199a469ff790f9c",
+        "e5884c1a12ab16f09ef4a812",
+        "ed431229f15b3395813e05bc",
+        "adc1cba302f55759f2084529"
+      ],
+      "path_ids": [
+        "11e1375a59ecd431e012ce0a"
+      ],
+      "evidence_ids": [
+        "0d07ad9a52889ef1cbd15812",
+        "714c04825cd27a986ee8d2f5"
+      ]
+    },
+    {
+      "text": "沙河雁南一站式多功能厅提供沙河雁南多功能厅预约；沙河雁南多功能厅预约通过平台网上服务大厅；学生证补办申请通过平台网上服务大厅。",
+      "entity_ids": [
+        "dda3c55f2199a469ff790f9c",
+        "e5884c1a12ab16f09ef4a812",
+        "ed431229f15b3395813e05bc",
+        "61595348a4d3dd88299bdf67"
+      ],
+      "path_ids": [
+        "6c346db7716094d4fe66c8b2"
+      ],
+      "evidence_ids": [
+        "0d07ad9a52889ef1cbd15812",
+        "714c04825cd27a986ee8d2f5"
+      ]
+    },
+    {
+      "text": "沙河雁南一站式多功能厅提供沙河雁南多功能厅预约；沙河雁南多功能厅预约通过平台网上服务大厅；四六级考试请假申请通过平台网上服务大厅。",
+      "entity_ids": [
+        "dda3c55f2199a469ff790f9c",
+        "e5884c1a12ab16f09ef4a812",
+        "ed431229f15b3395813e05bc",
+        "05183828ad667419c66676d6"
+      ],
+      "path_ids": [
+        "4f43c5bdf63f5d1dc8afd51b"
+      ],
+      "evidence_ids": [
+        "0d07ad9a52889ef1cbd15812",
+        "714c04825cd27a986ee8d2f5"
+      ]
+    },
+    {
+      "text": "沙河雁南一站式多功能厅提供沙河雁南多功能厅预约；沙河雁南多功能厅预约通过平台网上服务大厅；本科学生退学申请通过平台网上服务大厅。",
+      "entity_ids": [
+        "dda3c55f2199a469ff790f9c",
+        "e5884c1a12ab16f09ef4a812",
+        "ed431229f15b3395813e05bc",
+        "150a51fffb2d6d556915f321"
+      ],
+      "path_ids": [
+        "6ad7fd8bfea3a5d5efe431ef"
+      ],
+      "evidence_ids": [
+        "0d07ad9a52889ef1cbd15812",
+        "714c04825cd27a986ee8d2f5"
+      ]
+    },
+    {
+      "text": "沙河雁南一站式多功能厅提供沙河雁南多功能厅预约；沙河雁南多功能厅预约通过平台网上服务大厅；沙河雁北多功能厅预约通过平台网上服务大厅。",
+      "entity_ids": [
+        "dda3c55f2199a469ff790f9c",
+        "e5884c1a12ab16f09ef4a812",
+        "ed431229f15b3395813e05bc",
+        "69dfc2e914d4b7a48af7a81c"
+      ],
+      "path_ids": [
+        "6909507c2d12bdb3a3d469b7"
+      ],
+      "evidence_ids": [
+        "0d07ad9a52889ef1cbd15812"
+      ]
+    }
+  ],
+  "paths": [
+    {
+      "id": "7ecf52da9c7d361f25ae7e26",
+      "branch_id": 0,
+      "nodes": [
+        {
+          "id": "dda3c55f2199a469ff790f9c",
+          "type": "Place",
+          "name": "沙河雁南一站式多功能厅",
+          "aliases": [
+            "雁南一站式多功能厅",
+            "雁南多功能厅"
+          ],
+          "campus": "shahe",
+          "url": null
+        },
+        {
+          "id": "e5884c1a12ab16f09ef4a812",
+          "type": "Service",
+          "name": "沙河雁南多功能厅预约",
+          "aliases": [
+            "雁南多功能厅预约"
+          ],
+          "campus": "shahe",
+          "url": null
+        },
+        {
+          "id": "ed431229f15b3395813e05bc",
+          "type": "Platform",
+          "name": "网上服务大厅",
+          "aliases": [
+            "服务大厅网站"
+          ],
+          "campus": "shared",
+          "url": "https://service.bupt.edu.cn/"
+        },
+        {
+          "id": "b533eb3a6e521ed28977db62",
+          "type": "Service",
+          "name": "校外人员入校申请",
+          "aliases": [],
+          "campus": "shared",
+          "url": null
+        }
+      ],
+      "edges": [
+        {
+          "subject_id": "dda3c55f2199a469ff790f9c",
+          "relation": "PROVIDES",
+          "object_id": "e5884c1a12ab16f09ef4a812",
+          "evidence_ids": [
+            "0d07ad9a52889ef1cbd15812"
+          ]
+        },
+        {
+          "subject_id": "e5884c1a12ab16f09ef4a812",
+          "relation": "USES_PLATFORM",
+          "object_id": "ed431229f15b3395813e05bc",
+          "evidence_ids": [
+            "0d07ad9a52889ef1cbd15812"
+          ]
+        },
+        {
+          "subject_id": "b533eb3a6e521ed28977db62",
+          "relation": "USES_PLATFORM",
+          "object_id": "ed431229f15b3395813e05bc",
+          "evidence_ids": [
+            "714c04825cd27a986ee8d2f5"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "11e1375a59ecd431e012ce0a",
+      "branch_id": 0,
+      "nodes": [
+        {
+          "id": "dda3c55f2199a469ff790f9c",
+          "type": "Place",
+          "name": "沙河雁南一站式多功能厅",
+          "aliases": [
+            "雁南一站式多功能厅",
+            "雁南多功能厅"
+          ],
+          "campus": "shahe",
+          "url": null
+        },
+        {
+          "id": "e5884c1a12ab16f09ef4a812",
+          "type": "Service",
+          "name": "沙河雁南多功能厅预约",
+          "aliases": [
+            "雁南多功能厅预约"
+          ],
+          "campus": "shahe",
+          "url": null
+        },
+        {
+          "id": "ed431229f15b3395813e05bc",
+          "type": "Platform",
+          "name": "网上服务大厅",
+          "aliases": [
+            "服务大厅网站"
+          ],
+          "campus": "shared",
+          "url": "https://service.bupt.edu.cn/"
+        },
+        {
+          "id": "adc1cba302f55759f2084529",
+          "type": "Service",
+          "name": "电动自行车校内通行证申请",
+          "aliases": [],
+          "campus": "shared",
+          "url": null
+        }
+      ],
+      "edges": [
+        {
+          "subject_id": "dda3c55f2199a469ff790f9c",
+          "relation": "PROVIDES",
+          "object_id": "e5884c1a12ab16f09ef4a812",
+          "evidence_ids": [
+            "0d07ad9a52889ef1cbd15812"
+          ]
+        },
+        {
+          "subject_id": "e5884c1a12ab16f09ef4a812",
+          "relation": "USES_PLATFORM",
+          "object_id": "ed431229f15b3395813e05bc",
+          "evidence_ids": [
+            "0d07ad9a52889ef1cbd15812"
+          ]
+        },
+        {
+          "subject_id": "adc1cba302f55759f2084529",
+          "relation": "USES_PLATFORM",
+          "object_id": "ed431229f15b3395813e05bc",
+          "evidence_ids": [
+            "714c04825cd27a986ee8d2f5"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "6c346db7716094d4fe66c8b2",
+      "branch_id": 0,
+      "nodes": [
+        {
+          "id": "dda3c55f2199a469ff790f9c",
+          "type": "Place",
+          "name": "沙河雁南一站式多功能厅",
+          "aliases": [
+            "雁南一站式多功能厅",
+            "雁南多功能厅"
+          ],
+          "campus": "shahe",
+          "url": null
+        },
+        {
+          "id": "e5884c1a12ab16f09ef4a812",
+          "type": "Service",
+          "name": "沙河雁南多功能厅预约",
+          "aliases": [
+            "雁南多功能厅预约"
+          ],
+          "campus": "shahe",
+          "url": null
+        },
+        {
+          "id": "ed431229f15b3395813e05bc",
+          "type": "Platform",
+          "name": "网上服务大厅",
+          "aliases": [
+            "服务大厅网站"
+          ],
+          "campus": "shared",
+          "url": "https://service.bupt.edu.cn/"
+        },
+        {
+          "id": "61595348a4d3dd88299bdf67",
+          "type": "Service",
+          "name": "学生证补办申请",
+          "aliases": [
+            "补办学生证",
+            "学生证补办"
+          ],
+          "campus": "shared",
+          "url": null
+        }
+      ],
+      "edges": [
+        {
+          "subject_id": "dda3c55f2199a469ff790f9c",
+          "relation": "PROVIDES",
+          "object_id": "e5884c1a12ab16f09ef4a812",
+          "evidence_ids": [
+            "0d07ad9a52889ef1cbd15812"
+          ]
+        },
+        {
+          "subject_id": "e5884c1a12ab16f09ef4a812",
+          "relation": "USES_PLATFORM",
+          "object_id": "ed431229f15b3395813e05bc",
+          "evidence_ids": [
+            "0d07ad9a52889ef1cbd15812"
+          ]
+        },
+        {
+          "subject_id": "61595348a4d3dd88299bdf67",
+          "relation": "USES_PLATFORM",
+          "object_id": "ed431229f15b3395813e05bc",
+          "evidence_ids": [
+            "714c04825cd27a986ee8d2f5"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4f43c5bdf63f5d1dc8afd51b",
+      "branch_id": 0,
+      "nodes": [
+        {
+          "id": "dda3c55f2199a469ff790f9c",
+          "type": "Place",
+          "name": "沙河雁南一站式多功能厅",
+          "aliases": [
+            "雁南一站式多功能厅",
+            "雁南多功能厅"
+          ],
+          "campus": "shahe",
+          "url": null
+        },
+        {
+          "id": "e5884c1a12ab16f09ef4a812",
+          "type": "Service",
+          "name": "沙河雁南多功能厅预约",
+          "aliases": [
+            "雁南多功能厅预约"
+          ],
+          "campus": "shahe",
+          "url": null
+        },
+        {
+          "id": "ed431229f15b3395813e05bc",
+          "type": "Platform",
+          "name": "网上服务大厅",
+          "aliases": [
+            "服务大厅网站"
+          ],
+          "campus": "shared",
+          "url": "https://service.bupt.edu.cn/"
+        },
+        {
+          "id": "05183828ad667419c66676d6",
+          "type": "Service",
+          "name": "四六级考试请假申请",
+          "aliases": [],
+          "campus": "shared",
+          "url": null
+        }
+      ],
+      "edges": [
+        {
+          "subject_id": "dda3c55f2199a469ff790f9c",
+          "relation": "PROVIDES",
+          "object_id": "e5884c1a12ab16f09ef4a812",
+          "evidence_ids": [
+            "0d07ad9a52889ef1cbd15812"
+          ]
+        },
+        {
+          "subject_id": "e5884c1a12ab16f09ef4a812",
+          "relation": "USES_PLATFORM",
+          "object_id": "ed431229f15b3395813e05bc",
+          "evidence_ids": [
+            "0d07ad9a52889ef1cbd15812"
+          ]
+        },
+        {
+          "subject_id": "05183828ad667419c66676d6",
+          "relation": "USES_PLATFORM",
+          "object_id": "ed431229f15b3395813e05bc",
+          "evidence_ids": [
+            "714c04825cd27a986ee8d2f5"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "6ad7fd8bfea3a5d5efe431ef",
+      "branch_id": 0,
+      "nodes": [
+        {
+          "id": "dda3c55f2199a469ff790f9c",
+          "type": "Place",
+          "name": "沙河雁南一站式多功能厅",
+          "aliases": [
+            "雁南一站式多功能厅",
+            "雁南多功能厅"
+          ],
+          "campus": "shahe",
+          "url": null
+        },
+        {
+          "id": "e5884c1a12ab16f09ef4a812",
+          "type": "Service",
+          "name": "沙河雁南多功能厅预约",
+          "aliases": [
+            "雁南多功能厅预约"
+          ],
+          "campus": "shahe",
+          "url": null
+        },
+        {
+          "id": "ed431229f15b3395813e05bc",
+          "type": "Platform",
+          "name": "网上服务大厅",
+          "aliases": [
+            "服务大厅网站"
+          ],
+          "campus": "shared",
+          "url": "https://service.bupt.edu.cn/"
+        },
+        {
+          "id": "150a51fffb2d6d556915f321",
+          "type": "Service",
+          "name": "本科学生退学申请",
+          "aliases": [],
+          "campus": "shared",
+          "url": null
+        }
+      ],
+      "edges": [
+        {
+          "subject_id": "dda3c55f2199a469ff790f9c",
+          "relation": "PROVIDES",
+          "object_id": "e5884c1a12ab16f09ef4a812",
+          "evidence_ids": [
+            "0d07ad9a52889ef1cbd15812"
+          ]
+        },
+        {
+          "subject_id": "e5884c1a12ab16f09ef4a812",
+          "relation": "USES_PLATFORM",
+          "object_id": "ed431229f15b3395813e05bc",
+          "evidence_ids": [
+            "0d07ad9a52889ef1cbd15812"
+          ]
+        },
+        {
+          "subject_id": "150a51fffb2d6d556915f321",
+          "relation": "USES_PLATFORM",
+          "object_id": "ed431229f15b3395813e05bc",
+          "evidence_ids": [
+            "714c04825cd27a986ee8d2f5"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "6909507c2d12bdb3a3d469b7",
+      "branch_id": 0,
+      "nodes": [
+        {
+          "id": "dda3c55f2199a469ff790f9c",
+          "type": "Place",
+          "name": "沙河雁南一站式多功能厅",
+          "aliases": [
+            "雁南一站式多功能厅",
+            "雁南多功能厅"
+          ],
+          "campus": "shahe",
+          "url": null
+        },
+        {
+          "id": "e5884c1a12ab16f09ef4a812",
+          "type": "Service",
+          "name": "沙河雁南多功能厅预约",
+          "aliases": [
+            "雁南多功能厅预约"
+          ],
+          "campus": "shahe",
+          "url": null
+        },
+        {
+          "id": "ed431229f15b3395813e05bc",
+          "type": "Platform",
+          "name": "网上服务大厅",
+          "aliases": [
+            "服务大厅网站"
+          ],
+          "campus": "shared",
+          "url": "https://service.bupt.edu.cn/"
+        },
+        {
+          "id": "69dfc2e914d4b7a48af7a81c",
+          "type": "Service",
+          "name": "沙河雁北多功能厅预约",
+          "aliases": [
+            "雁北多功能厅预约"
+          ],
+          "campus": "shahe",
+          "url": null
+        }
+      ],
+      "edges": [
+        {
+          "subject_id": "dda3c55f2199a469ff790f9c",
+          "relation": "PROVIDES",
+          "object_id": "e5884c1a12ab16f09ef4a812",
+          "evidence_ids": [
+            "0d07ad9a52889ef1cbd15812"
+          ]
+        },
+        {
+          "subject_id": "e5884c1a12ab16f09ef4a812",
+          "relation": "USES_PLATFORM",
+          "object_id": "ed431229f15b3395813e05bc",
+          "evidence_ids": [
+            "0d07ad9a52889ef1cbd15812"
+          ]
+        },
+        {
+          "subject_id": "69dfc2e914d4b7a48af7a81c",
+          "relation": "USES_PLATFORM",
+          "object_id": "ed431229f15b3395813e05bc",
+          "evidence_ids": [
+            "0d07ad9a52889ef1cbd15812"
+          ]
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "0d07ad9a52889ef1cbd15812",
+      "doc_id": "e1c99c043a2cfb00800c53dd",
+      "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+      "source_path": "src/content/docs/沙河校区/日常活动.md",
+      "heading": "一站式多功能厅",
+      "line_start": 43,
+      "line_end": 43,
+      "quote": "雁南和雁北均有一站式多功能厅，有几个类似会议室的房间，最大的可容纳 50 人左右，需要通过[网上服务大厅](/学习生活/常用网站#网上服务大厅)预约。",
+      "source_url": "https://github.com/byrdocs/bupt-survival-guide/blob/417fc690834fbc4406f48e503f5ef1f832d495db/src/content/docs/%E6%B2%99%E6%B2%B3%E6%A0%A1%E5%8C%BA/%E6%97%A5%E5%B8%B8%E6%B4%BB%E5%8A%A8.md#L43-L43"
+    },
+    {
+      "id": "714c04825cd27a986ee8d2f5",
+      "doc_id": "24a48dc4ee25e737da3b594b",
+      "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+      "source_path": "src/content/docs/学习生活/常用网站.md",
+      "heading": "杂项 / [网上服务大厅](https://service.bupt.edu.cn/)",
+      "line_start": 116,
+      "line_end": 120,
+      "quote": "- 帮校外人员预约入校。在「校外人员入校申请表」中申请；\n- 办理电动车校内牌照。在「电动自行车校内通行证申请」中申请；\n- 需要补办学生证。在「补办学生证」中申请；\n- 因为某些原因不能参加四六级考试，但又不想被禁考[^1]，可在「因故不能参加全国大学英语四、六级笔试考试申请表」中请假。\n- 需要退学。在「北京邮电大学本科学生退学审批表」中申请，申请需谨慎。",
+      "source_url": "https://github.com/byrdocs/bupt-survival-guide/blob/417fc690834fbc4406f48e503f5ef1f832d495db/src/content/docs/%E5%AD%A6%E4%B9%A0%E7%94%9F%E6%B4%BB/%E5%B8%B8%E7%94%A8%E7%BD%91%E7%AB%99.md#L116-L120"
+    }
+  ],
+  "warnings": [
+    "依据指南快照；不能确认实时变化。"
+  ],
+  "clarifications": []
+}

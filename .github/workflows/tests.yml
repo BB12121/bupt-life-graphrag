@@ -1,0 +1,22 @@
+name: Backend checks
+on:
+  push:
+  pull_request:
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: astral-sh/setup-uv@v6
+      - run: uv venv
+      - run: uv pip install --index-url https://download.pytorch.org/whl/cpu torch==2.14.1
+      - run: uv pip install -r requirements-tested.txt
+      - run: uv pip install -e '.[dev]'
+      - run: .venv/bin/python -m ruff check bupt_rag tests scripts
+      - run: .venv/bin/python -m ruff format --check bupt_rag tests scripts
+      - run: .venv/bin/python -m pytest -q
+      - run: .venv/bin/python scripts/export_openapi.py
+      - run: git diff --exit-code docs/openapi.json

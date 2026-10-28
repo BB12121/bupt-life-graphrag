@@ -1,0 +1,671 @@
+[
+  {
+    "source_path": "src/content/docs/沙河校区/日常活动.md",
+    "heading": "一站式多功能厅",
+    "quote": "雁南和雁北均有一站式多功能厅，有几个类似会议室的房间，最大的可容纳 50 人左右，需要通过[网上服务大厅](/学习生活/常用网站#网上服务大厅)预约。",
+    "subject": {
+      "name": "沙河雁南一站式多功能厅",
+      "type": "Place",
+      "campus": "shahe",
+      "aliases": [
+        "雁南一站式多功能厅",
+        "雁南多功能厅"
+      ],
+      "url": null
+    },
+    "relation": "PROVIDES",
+    "object": {
+      "name": "沙河雁南多功能厅预约",
+      "type": "Service",
+      "campus": "shahe",
+      "aliases": [
+        "雁南多功能厅预约"
+      ],
+      "url": null
+    }
+  },
+  {
+    "source_path": "src/content/docs/沙河校区/日常活动.md",
+    "heading": "一站式多功能厅",
+    "quote": "雁南和雁北均有一站式多功能厅，有几个类似会议室的房间，最大的可容纳 50 人左右，需要通过[网上服务大厅](/学习生活/常用网站#网上服务大厅)预约。",
+    "subject": {
+      "name": "沙河雁南多功能厅预约",
+      "type": "Service",
+      "campus": "shahe",
+      "aliases": [
+        "雁南多功能厅预约"
+      ],
+      "url": null
+    },
+    "relation": "USES_PLATFORM",
+    "object": {
+      "name": "网上服务大厅",
+      "type": "Platform",
+      "campus": "shared",
+      "aliases": [
+        "服务大厅网站"
+      ],
+      "url": "https://service.bupt.edu.cn/"
+    }
+  },
+  {
+    "source_path": "src/content/docs/沙河校区/日常活动.md",
+    "heading": "一站式多功能厅",
+    "quote": "雁南和雁北均有一站式多功能厅，有几个类似会议室的房间，最大的可容纳 50 人左右，需要通过[网上服务大厅](/学习生活/常用网站#网上服务大厅)预约。",
+    "subject": {
+      "name": "沙河雁北一站式多功能厅",
+      "type": "Place",
+      "campus": "shahe",
+      "aliases": [
+        "雁北一站式多功能厅",
+        "雁北多功能厅"
+      ],
+      "url": null
+    },
+    "relation": "PROVIDES",
+    "object": {
+      "name": "沙河雁北多功能厅预约",
+      "type": "Service",
+      "campus": "shahe",
+      "aliases": [
+        "雁北多功能厅预约"
+      ],
+      "url": null
+    }
+  },
+  {
+    "source_path": "src/content/docs/沙河校区/日常活动.md",
+    "heading": "一站式多功能厅",
+    "quote": "雁南和雁北均有一站式多功能厅，有几个类似会议室的房间，最大的可容纳 50 人左右，需要通过[网上服务大厅](/学习生活/常用网站#网上服务大厅)预约。",
+    "subject": {
+      "name": "沙河雁北多功能厅预约",
+      "type": "Service",
+      "campus": "shahe",
+      "aliases": [
+        "雁北多功能厅预约"
+      ],
+      "url": null
+    },
+    "relation": "USES_PLATFORM",
+    "object": {
+      "name": "网上服务大厅",
+      "type": "Platform",
+      "campus": "shared",
+      "aliases": [
+        "服务大厅网站"
+      ],
+      "url": "https://service.bupt.edu.cn/"
+    }
+  },
+  {
+    "source_path": "src/content/docs/学习生活/常用网站.md",
+    "heading": "杂项 / [网上服务大厅](https://service.bupt.edu.cn/)",
+    "quote": "- 帮校外人员预约入校。在「校外人员入校申请表」中申请；\n- 办理电动车校内牌照。在「电动自行车校内通行证申请」中申请；\n- 需要补办学生证。在「补办学生证」中申请；\n- 因为某些原因不能参加四六级考试，但又不想被禁考[^1]，可在「因故不能参加全国大学英语四、六级笔试考试申请表」中请假。\n- 需要退学。在「北京邮电大学本科学生退学审批表」中申请，申请需谨慎。",
+    "subject": {
+      "name": "校外人员入校申请",
+      "type": "Service",
+      "campus": "shared",
+      "aliases": [],
+      "url": null
+    },
+    "relation": "USES_PLATFORM",
+    "object": {
+      "name": "网上服务大厅",
+      "type": "Platform",
+      "campus": "shared",
+      "aliases": [
+        "服务大厅网站"
+      ],
+      "url": "https://service.bupt.edu.cn/"
+    }
+  },
+  {
+    "source_path": "src/content/docs/学习生活/常用网站.md",
+    "heading": "杂项 / [网上服务大厅](https://service.bupt.edu.cn/)",
+    "quote": "- 帮校外人员预约入校。在「校外人员入校申请表」中申请；\n- 办理电动车校内牌照。在「电动自行车校内通行证申请」中申请；\n- 需要补办学生证。在「补办学生证」中申请；\n- 因为某些原因不能参加四六级考试，但又不想被禁考[^1]，可在「因故不能参加全国大学英语四、六级笔试考试申请表」中请假。\n- 需要退学。在「北京邮电大学本科学生退学审批表」中申请，申请需谨慎。",
+    "subject": {
+      "name": "电动自行车校内通行证申请",
+      "type": "Service",
+      "campus": "shared",
+      "aliases": [],
+      "url": null
+    },
+    "relation": "USES_PLATFORM",
+    "object": {
+      "name": "网上服务大厅",
+      "type": "Platform",
+      "campus": "shared",
+      "aliases": [
+        "服务大厅网站"
+      ],
+      "url": "https://service.bupt.edu.cn/"
+    }
+  },
+  {
+    "source_path": "src/content/docs/学习生活/常用网站.md",
+    "heading": "杂项 / [网上服务大厅](https://service.bupt.edu.cn/)",
+    "quote": "- 帮校外人员预约入校。在「校外人员入校申请表」中申请；\n- 办理电动车校内牌照。在「电动自行车校内通行证申请」中申请；\n- 需要补办学生证。在「补办学生证」中申请；\n- 因为某些原因不能参加四六级考试，但又不想被禁考[^1]，可在「因故不能参加全国大学英语四、六级笔试考试申请表」中请假。\n- 需要退学。在「北京邮电大学本科学生退学审批表」中申请，申请需谨慎。",
+    "subject": {
+      "name": "学生证补办申请",
+      "type": "Service",
+      "campus": "shared",
+      "aliases": [
+        "补办学生证",
+        "学生证补办"
+      ],
+      "url": null
+    },
+    "relation": "USES_PLATFORM",
+    "object": {
+      "name": "网上服务大厅",
+      "type": "Platform",
+      "campus": "shared",
+      "aliases": [
+        "服务大厅网站"
+      ],
+      "url": "https://service.bupt.edu.cn/"
+    }
+  },
+  {
+    "source_path": "src/content/docs/学习生活/常用网站.md",
+    "heading": "杂项 / [网上服务大厅](https://service.bupt.edu.cn/)",
+    "quote": "- 帮校外人员预约入校。在「校外人员入校申请表」中申请；\n- 办理电动车校内牌照。在「电动自行车校内通行证申请」中申请；\n- 需要补办学生证。在「补办学生证」中申请；\n- 因为某些原因不能参加四六级考试，但又不想被禁考[^1]，可在「因故不能参加全国大学英语四、六级笔试考试申请表」中请假。\n- 需要退学。在「北京邮电大学本科学生退学审批表」中申请，申请需谨慎。",
+    "subject": {
+      "name": "四六级考试请假申请",
+      "type": "Service",
+      "campus": "shared",
+      "aliases": [],
+      "url": null
+    },
+    "relation": "USES_PLATFORM",
+    "object": {
+      "name": "网上服务大厅",
+      "type": "Platform",
+      "campus": "shared",
+      "aliases": [
+        "服务大厅网站"
+      ],
+      "url": "https://service.bupt.edu.cn/"
+    }
+  },
+  {
+    "source_path": "src/content/docs/学习生活/常用网站.md",
+    "heading": "杂项 / [网上服务大厅](https://service.bupt.edu.cn/)",
+    "quote": "- 帮校外人员预约入校。在「校外人员入校申请表」中申请；\n- 办理电动车校内牌照。在「电动自行车校内通行证申请」中申请；\n- 需要补办学生证。在「补办学生证」中申请；\n- 因为某些原因不能参加四六级考试，但又不想被禁考[^1]，可在「因故不能参加全国大学英语四、六级笔试考试申请表」中请假。\n- 需要退学。在「北京邮电大学本科学生退学审批表」中申请，申请需谨慎。",
+    "subject": {
+      "name": "本科学生退学申请",
+      "type": "Service",
+      "campus": "shared",
+      "aliases": [],
+      "url": null
+    },
+    "relation": "USES_PLATFORM",
+    "object": {
+      "name": "网上服务大厅",
+      "type": "Platform",
+      "campus": "shared",
+      "aliases": [
+        "服务大厅网站"
+      ],
+      "url": "https://service.bupt.edu.cn/"
+    }
+  },
+  {
+    "source_path": "src/content/docs/沙河校区/日常活动.md",
+    "heading": "图书馆 / 研讨间",
+    "quote": "研讨间需要在[预约系统](https://order.bupt.edu.cn)中预约，并且必须有至少二人前往打卡使用，如果仅 1 人打卡使用，15 分钟后将会记录违约并且预约取消。也可以通过微信关注「北京邮电大学图书馆」公众号，从公众号进入预约系统进行预约；通过微信公众号预约同样需要连接校园网环境。在规定时间违约累计达 3 次，系统将暂停读者 7 天的预约权限。",
+    "subject": {
+      "name": "沙河图书馆研讨间",
+      "type": "Place",
+      "campus": "shahe",
+      "aliases": [
+        "研讨间",
+        "图书馆研讨间"
+      ],
+      "url": null
+    },
+    "relation": "PROVIDES",
+    "object": {
+      "name": "沙河图书馆研讨间预约",
+      "type": "Service",
+      "campus": "shahe",
+      "aliases": [
+        "研讨间预约"
+      ],
+      "url": null
+    }
+  },
+  {
+    "source_path": "src/content/docs/沙河校区/日常活动.md",
+    "heading": "图书馆 / 研讨间",
+    "quote": "研讨间需要在[预约系统](https://order.bupt.edu.cn)中预约，并且必须有至少二人前往打卡使用，如果仅 1 人打卡使用，15 分钟后将会记录违约并且预约取消。也可以通过微信关注「北京邮电大学图书馆」公众号，从公众号进入预约系统进行预约；通过微信公众号预约同样需要连接校园网环境。在规定时间违约累计达 3 次，系统将暂停读者 7 天的预约权限。",
+    "subject": {
+      "name": "沙河图书馆研讨间预约",
+      "type": "Service",
+      "campus": "shahe",
+      "aliases": [
+        "研讨间预约"
+      ],
+      "url": null
+    },
+    "relation": "USES_PLATFORM",
+    "object": {
+      "name": "图书馆/教三楼空间预约管理系统",
+      "type": "Platform",
+      "campus": "shared",
+      "aliases": [
+        "空间预约管理系统",
+        "图书馆预约系统"
+      ],
+      "url": "https://order.bupt.edu.cn"
+    }
+  },
+  {
+    "source_path": "src/content/docs/沙河校区/日常活动.md",
+    "heading": "图书馆 / 研讨间",
+    "quote": "研讨间需要在[预约系统](https://order.bupt.edu.cn)中预约，并且必须有至少二人前往打卡使用，如果仅 1 人打卡使用，15 分钟后将会记录违约并且预约取消。也可以通过微信关注「北京邮电大学图书馆」公众号，从公众号进入预约系统进行预约；通过微信公众号预约同样需要连接校园网环境。在规定时间违约累计达 3 次，系统将暂停读者 7 天的预约权限。",
+    "subject": {
+      "name": "沙河图书馆研讨间预约",
+      "type": "Service",
+      "campus": "shahe",
+      "aliases": [
+        "研讨间预约"
+      ],
+      "url": null
+    },
+    "relation": "REQUIRES",
+    "object": {
+      "name": "使用研讨间时至少二人打卡",
+      "type": "Condition",
+      "campus": "shahe",
+      "aliases": [],
+      "url": null
+    }
+  },
+  {
+    "source_path": "src/content/docs/学习生活/常用网站.md",
+    "heading": "杂项 / [北京邮电大学图书馆/教三楼空间预约管理系统](https://order.bupt.edu.cn)",
+    "quote": "**此网站需要校园网环境**。",
+    "subject": {
+      "name": "图书馆/教三楼空间预约管理系统",
+      "type": "Platform",
+      "campus": "shared",
+      "aliases": [
+        "空间预约管理系统",
+        "图书馆预约系统"
+      ],
+      "url": "https://order.bupt.edu.cn"
+    },
+    "relation": "REQUIRES",
+    "object": {
+      "name": "校园网环境",
+      "type": "Condition",
+      "campus": "shared",
+      "aliases": [
+        "校园网"
+      ],
+      "url": null
+    }
+  },
+  {
+    "source_path": "src/content/docs/学习生活/常用网站.md",
+    "heading": "杂项 / [信息服务门户](http://my.bupt.edu.cn/)",
+    "quote": "**此网站需要校园网环境**。",
+    "subject": {
+      "name": "信息服务门户",
+      "type": "Platform",
+      "campus": "shared",
+      "aliases": [],
+      "url": "http://my.bupt.edu.cn/"
+    },
+    "relation": "REQUIRES",
+    "object": {
+      "name": "校园网环境",
+      "type": "Condition",
+      "campus": "shared",
+      "aliases": [
+        "校园网"
+      ],
+      "url": null
+    }
+  },
+  {
+    "source_path": "src/content/docs/学习生活/常用网站.md",
+    "heading": "杂项 / [本科教务管理系统](https://jwgl.bupt.edu.cn)",
+    "quote": "**此网站需要校园网环境**。",
+    "subject": {
+      "name": "本科教务管理系统",
+      "type": "Platform",
+      "campus": "shared",
+      "aliases": [],
+      "url": "https://jwgl.bupt.edu.cn"
+    },
+    "relation": "REQUIRES",
+    "object": {
+      "name": "校园网环境",
+      "type": "Condition",
+      "campus": "shared",
+      "aliases": [
+        "校园网"
+      ],
+      "url": null
+    }
+  },
+  {
+    "source_path": "src/content/docs/学习生活/常用网站.md",
+    "heading": "杂项 / [软件正版化平台](https://software.bupt.edu.cn)",
+    "quote": "**此网站需要校园网环境**。",
+    "subject": {
+      "name": "软件正版化平台",
+      "type": "Platform",
+      "campus": "shared",
+      "aliases": [],
+      "url": "https://software.bupt.edu.cn"
+    },
+    "relation": "REQUIRES",
+    "object": {
+      "name": "校园网环境",
+      "type": "Condition",
+      "campus": "shared",
+      "aliases": [
+        "校园网"
+      ],
+      "url": null
+    }
+  },
+  {
+    "source_path": "src/content/docs/学习生活/常用网站.md",
+    "heading": "杂项 / [Overleaf](https://overleaf.byrio.work)",
+    "quote": "**此网站需要校园网环境**。",
+    "subject": {
+      "name": "Overleaf",
+      "type": "Platform",
+      "campus": "shared",
+      "aliases": [],
+      "url": "https://overleaf.byrio.work"
+    },
+    "relation": "REQUIRES",
+    "object": {
+      "name": "校园网环境",
+      "type": "Condition",
+      "campus": "shared",
+      "aliases": [
+        "校园网"
+      ],
+      "url": null
+    }
+  },
+  {
+    "source_path": "src/content/docs/学习生活/常用网站.md",
+    "heading": "杂项 / [开源镜像](https://mirrors.byr.ink)",
+    "quote": "**此网站需要校园网环境**。",
+    "subject": {
+      "name": "开源镜像",
+      "type": "Platform",
+      "campus": "shared",
+      "aliases": [],
+      "url": "https://mirrors.byr.ink"
+    },
+    "relation": "REQUIRES",
+    "object": {
+      "name": "校园网环境",
+      "type": "Condition",
+      "campus": "shared",
+      "aliases": [
+        "校园网"
+      ],
+      "url": null
+    }
+  },
+  {
+    "source_path": "src/content/docs/沙河校区/生活服务.md",
+    "heading": "校园一卡通补办",
+    "quote": "沙河校区可在学生活动中心一楼的综合服务大厅的自动补办机器上自助补办校园一卡通，携带身份证或输入身份证号，缴纳 20 元卡费即可。综合服务大厅需从东侧入口进入。",
+    "subject": {
+      "name": "沙河综合服务大厅",
+      "type": "Place",
+      "campus": "shahe",
+      "aliases": [
+        "综合服务大厅"
+      ],
+      "url": null
+    },
+    "relation": "PROVIDES",
+    "object": {
+      "name": "沙河校园一卡通补办",
+      "type": "Service",
+      "campus": "shahe",
+      "aliases": [
+        "校园一卡通补办",
+        "补办校园一卡通",
+        "学生卡补办",
+        "补办学生卡"
+      ],
+      "url": null
+    }
+  },
+  {
+    "source_path": "src/content/docs/沙河校区/生活服务.md",
+    "heading": "校园一卡通补办",
+    "quote": "沙河校区可在学生活动中心一楼的综合服务大厅的自动补办机器上自助补办校园一卡通，携带身份证或输入身份证号，缴纳 20 元卡费即可。综合服务大厅需从东侧入口进入。",
+    "subject": {
+      "name": "沙河综合服务大厅",
+      "type": "Place",
+      "campus": "shahe",
+      "aliases": [
+        "综合服务大厅"
+      ],
+      "url": null
+    },
+    "relation": "LOCATED_IN",
+    "object": {
+      "name": "沙河校区",
+      "type": "Campus",
+      "campus": "shahe",
+      "aliases": [
+        "沙河"
+      ],
+      "url": null
+    }
+  },
+  {
+    "source_path": "src/content/docs/沙河校区/生活服务.md",
+    "heading": "校园一卡通补办",
+    "quote": "沙河校区可在学生活动中心一楼的综合服务大厅的自动补办机器上自助补办校园一卡通，携带身份证或输入身份证号，缴纳 20 元卡费即可。综合服务大厅需从东侧入口进入。",
+    "subject": {
+      "name": "沙河校园一卡通补办",
+      "type": "Service",
+      "campus": "shahe",
+      "aliases": [
+        "校园一卡通补办",
+        "补办校园一卡通",
+        "学生卡补办",
+        "补办学生卡"
+      ],
+      "url": null
+    },
+    "relation": "REQUIRES",
+    "object": {
+      "name": "携带身份证或输入身份证号",
+      "type": "Condition",
+      "campus": "shahe",
+      "aliases": [],
+      "url": null
+    }
+  },
+  {
+    "source_path": "src/content/docs/沙河校区/生活服务.md",
+    "heading": "校园一卡通补办",
+    "quote": "沙河校区可在学生活动中心一楼的综合服务大厅的自动补办机器上自助补办校园一卡通，携带身份证或输入身份证号，缴纳 20 元卡费即可。综合服务大厅需从东侧入口进入。",
+    "subject": {
+      "name": "沙河综合服务大厅",
+      "type": "Place",
+      "campus": "shahe",
+      "aliases": [
+        "综合服务大厅"
+      ],
+      "url": null
+    },
+    "relation": "LOCATED_IN",
+    "object": {
+      "name": "沙河学生活动中心",
+      "type": "Place",
+      "campus": "shahe",
+      "aliases": [
+        "学生活动中心",
+        "学活"
+      ],
+      "url": null
+    }
+  },
+  {
+    "source_path": "src/content/docs/海淀校区/生活服务.md",
+    "heading": "补办校园卡",
+    "quote": "海淀校区补办校园卡可前往综合服务大厅（学苑风味餐厅南侧），使用自助补卡机办理。需刷身份证或输入身份证号，费用 20 元从校园卡余额中扣除，新卡当场出卡。营业时间至 20:00。",
+    "subject": {
+      "name": "海淀综合服务大厅",
+      "type": "Place",
+      "campus": "haidian",
+      "aliases": [
+        "综合服务大厅"
+      ],
+      "url": null
+    },
+    "relation": "PROVIDES",
+    "object": {
+      "name": "海淀校园一卡通补办",
+      "type": "Service",
+      "campus": "haidian",
+      "aliases": [
+        "校园一卡通补办",
+        "补办校园一卡通",
+        "学生卡补办",
+        "补办学生卡"
+      ],
+      "url": null
+    }
+  },
+  {
+    "source_path": "src/content/docs/海淀校区/生活服务.md",
+    "heading": "补办校园卡",
+    "quote": "海淀校区补办校园卡可前往综合服务大厅（学苑风味餐厅南侧），使用自助补卡机办理。需刷身份证或输入身份证号，费用 20 元从校园卡余额中扣除，新卡当场出卡。营业时间至 20:00。",
+    "subject": {
+      "name": "海淀综合服务大厅",
+      "type": "Place",
+      "campus": "haidian",
+      "aliases": [
+        "综合服务大厅"
+      ],
+      "url": null
+    },
+    "relation": "LOCATED_IN",
+    "object": {
+      "name": "海淀校区",
+      "type": "Campus",
+      "campus": "haidian",
+      "aliases": [
+        "海淀",
+        "本部",
+        "西土城路校区"
+      ],
+      "url": null
+    }
+  },
+  {
+    "source_path": "src/content/docs/海淀校区/生活服务.md",
+    "heading": "补办校园卡",
+    "quote": "海淀校区补办校园卡可前往综合服务大厅（学苑风味餐厅南侧），使用自助补卡机办理。需刷身份证或输入身份证号，费用 20 元从校园卡余额中扣除，新卡当场出卡。营业时间至 20:00。",
+    "subject": {
+      "name": "海淀校园一卡通补办",
+      "type": "Service",
+      "campus": "haidian",
+      "aliases": [
+        "校园一卡通补办",
+        "补办校园一卡通",
+        "学生卡补办",
+        "补办学生卡"
+      ],
+      "url": null
+    },
+    "relation": "REQUIRES",
+    "object": {
+      "name": "携带身份证或输入身份证号",
+      "type": "Condition",
+      "campus": "haidian",
+      "aliases": [],
+      "url": null
+    }
+  },
+  {
+    "source_path": "src/content/docs/海淀校区/生活服务.md",
+    "heading": "商店街",
+    "quote": "商店街位于学生活动中心南侧，只是一条很窄的街。",
+    "subject": {
+      "name": "海淀商店街",
+      "type": "Place",
+      "campus": "haidian",
+      "aliases": [
+        "商店街"
+      ],
+      "url": null
+    },
+    "relation": "LOCATED_IN",
+    "object": {
+      "name": "海淀学生活动中心南侧",
+      "type": "Place",
+      "campus": "haidian",
+      "aliases": [
+        "学生活动中心南侧"
+      ],
+      "url": null
+    }
+  },
+  {
+    "source_path": "src/content/docs/海淀校区/日常活动.md",
+    "heading": "教室 / 长年报告厅",
+    "quote": "长年报告厅位于教三楼一楼东侧入口处，房间号 136。",
+    "subject": {
+      "name": "海淀长年报告厅",
+      "type": "Place",
+      "campus": "haidian",
+      "aliases": [
+        "长年报告厅"
+      ],
+      "url": null
+    },
+    "relation": "LOCATED_IN",
+    "object": {
+      "name": "海淀教三楼一楼东侧136室",
+      "type": "Place",
+      "campus": "haidian",
+      "aliases": [
+        "教三楼136室"
+      ],
+      "url": null
+    }
+  },
+  {
+    "source_path": "src/content/docs/沙河校区/生活服务.md",
+    "heading": "好邻居超市",
+    "quote": "好邻居超市位于雁西园 3 号楼负一层。",
+    "subject": {
+      "name": "沙河好邻居超市",
+      "type": "Place",
+      "campus": "shahe",
+      "aliases": [
+        "好邻居超市"
+      ],
+      "url": null
+    },
+    "relation": "LOCATED_IN",
+    "object": {
+      "name": "沙河雁西园3号楼负一层",
+      "type": "Place",
+      "campus": "shahe",
+      "aliases": [
+        "雁西园3号楼负一层"
+      ],
+      "url": null
+    }
+  }
+]
