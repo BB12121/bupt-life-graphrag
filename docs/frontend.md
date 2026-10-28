@@ -1,5 +1,7 @@
 # 前端联调
 
+Vue 前端已整合到 `bupt-graphrag-frontend/`，默认真实接口模式。构建后访问 `http://127.0.0.1:8000`；Vite 开发使用 5173，预览使用 4173，两者均代理 `/api` 到后端。当前操作以 [整合说明](integration.md) 为准。本文的 TypeScript 文件是原始最小示例，实际客户端位于前端 `src/api/client.ts`。
+
 后端：`http://127.0.0.1:8000`；前缀：`/api/v1`。交互式文档 `/docs`，机器可读文档 `/openapi.json`。可复制 [TypeScript 请求示例](frontend-client.ts)。
 
 | 方法 | 路径 | 用途 |

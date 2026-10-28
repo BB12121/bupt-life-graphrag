@@ -4,9 +4,13 @@ __pycache__/
 .ruff_cache/
 *.py[cod]
 .env
-data/
+/data/
 .cache/
 dist/
 *.egg-info/
 evaluation/results*.json
 evaluation/results*.csv
+node_modules/
+test-results/
+playwright-report/
+/北邮生活指南_前端交接包.zip

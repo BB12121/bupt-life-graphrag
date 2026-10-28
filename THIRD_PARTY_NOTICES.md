@@ -11,3 +11,5 @@
 本项目对相关段落进行了结构化摘录、实体/关系标注及测试题改编；不是上游官方问答服务，也不代表上游或学校背书。原文引号内内容保持来源措辞，ID、关系结构、查询与测试是本项目的整理。知识资源、题库和响应示例中的衍生内容继续按 CC BY-NC-SA 4.0 提供，不受代码 MIT 许可替代。
 
 BGE 模型来自 [BAAI/bge-small-zh-v1.5](https://huggingface.co/BAAI/bge-small-zh-v1.5)，按模型仓库的 MIT 条款使用。可选 Qwen 模型须遵循具体下载模型仓库的许可。模型权重不包含在本仓库中。Python 依赖分别遵循各自许可证。
+
+前端源码已整合到 `bupt-graphrag-frontend/`。其中 `src/data/guide.json` 是同一固定提交的 39 篇原文演示快照，`src/data/demo.ts` 为演示整理，相关指南内容同样遵循 CC BY-NC-SA 4.0，见前端 `docs/ATTRIBUTION.md`。真实模式从后端读取资料，不加载演示快照。

@@ -10,6 +10,14 @@ EXCLUDED = {"index.mdx", "contributing.md", "acknowledgments.md"}
 
 @dataclass
 class Settings:
+    frontend_dist: Path = field(
+        default_factory=lambda: Path(
+            os.getenv(
+                "BUPT_FRONTEND_DIST",
+                str(Path(__file__).resolve().parents[1] / "bupt-graphrag-frontend" / "dist"),
+            )
+        )
+    )
     data_dir: Path = field(default_factory=lambda: Path(os.getenv("BUPT_DATA_DIR", "data")))
     embedding_model: str = field(
         default_factory=lambda: os.getenv("BUPT_EMBEDDING_MODEL", "BAAI/bge-small-zh-v1.5")

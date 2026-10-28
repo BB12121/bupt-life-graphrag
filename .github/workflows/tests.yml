@@ -1,4 +1,4 @@
-name: Backend checks
+name: Full-stack checks
 on:
   push:
   pull_request:
@@ -11,6 +11,11 @@ jobs:
         with:
           python-version: '3.11'
       - uses: astral-sh/setup-uv@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: bupt-graphrag-frontend/package-lock.json
       - run: uv venv
       - run: uv pip install --index-url https://download.pytorch.org/whl/cpu torch==2.14.1
       - run: uv pip install -r requirements-tested.txt
@@ -20,3 +25,20 @@ jobs:
       - run: .venv/bin/python -m pytest -q
       - run: .venv/bin/python scripts/export_openapi.py
       - run: git diff --exit-code docs/openapi.json
+      - run: npm ci
+        working-directory: bupt-graphrag-frontend
+      - run: npm test
+        working-directory: bupt-graphrag-frontend
+      - run: npm run build
+        working-directory: bupt-graphrag-frontend
+      - run: npx playwright install --with-deps chromium
+        working-directory: bupt-graphrag-frontend
+      - run: npm run test:e2e
+        working-directory: bupt-graphrag-frontend
+        env:
+          BUPT_E2E_START_FIXTURE: '1'
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: browser-test-report
+          path: bupt-graphrag-frontend/playwright-report

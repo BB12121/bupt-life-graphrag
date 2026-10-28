@@ -9,6 +9,7 @@ from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException
 
 from .config import Settings
+from .frontend import FrontendFiles
 from .models import (
     AppError,
     DocumentDetail,
@@ -127,6 +128,9 @@ def create_app(settings=None, service=None):
     @app.post("/api/v1/qa", response_model=QAResponse, tags=["qa"])
     def qa(body: QARequest, request: Request):
         return request.app.state.service.ask(body)
+
+    if (settings.frontend_dist / "index.html").is_file():
+        app.mount("/", FrontendFiles(directory=settings.frontend_dist), name="frontend")
 
     return app
 

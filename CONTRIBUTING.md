@@ -18,3 +18,11 @@ python scripts/export_openapi.py
 只提交源代码、文档与已审核数据；不提交 `.env`、访问令牌、模型、SQLite、本机日志或个人资料。新引用要注明原来源及许可。修改实验口径时保留记录，不为得到更高分而删除失败题。
 
 当前 GitHub 仓库由创建者管理。邀请其他成员需要其 GitHub 用户名，由仓库管理员在 Settings → Collaborators 中添加。
+
+## 前端与全栈验证
+
+前端源码在 `bupt-graphrag-frontend/`，执行 `npm ci`、`npm test`、`npm run build`。默认连接真实后端；仅演示时设置 `VITE_API_MODE=demo`。不要把服务端密钥写入 `VITE_*` 变量。
+
+启动完整应用后，在前端目录执行 `npm run test:e2e`。本机浏览器测试走真实后端与模型；GitHub Actions 构建前端后使用隔离后端与明确标注的模型/资料测试替身执行同样的流程，不依赖模型下载，其耗时不是模型性能。
+
+修改接口时同步更新前端类型和协议测试。原交接包中的截图、独立展示说明保留为历史记录；当前操作以仓库 README 和 `docs/integration.md` 为准。

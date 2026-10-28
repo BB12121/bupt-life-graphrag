@@ -1,0 +1,86 @@
+import { expect, test } from '@playwright/test'
+
+test('真实接口三跳问答、路径方向及历史原文查看', async ({ page, request }) => {
+  const errors: string[] = []
+  page.on('pageerror', error => errors.push(error.message))
+  const status = await (await request.get('/api/v1/knowledge/status')).json()
+  await page.goto('/')
+  await expect(page.getByRole('heading', { name: '你想了解什么？' })).toBeVisible()
+  await expect(page.locator('.mode-badge')).toHaveCount(0)
+  await page.getByRole('button', { name: '预约平台还能办理什么？' }).click()
+  await expect(page.locator('.answer-text').filter({ hasText: '学生证补办申请' })).toBeVisible()
+  await expect(page.locator('.path-tabs button')).toHaveCount(6)
+  await expect(page.locator('.result-version')).toContainText(status.source_commit.slice(0, 8))
+  const documentRequest = page.waitForRequest(r => r.url().includes('/api/v1/documents/'))
+  await page.getByRole('button', { name: '查看原文', exact: true }).click()
+  expect((await documentRequest).url()).toContain('source_commit=' + status.source_commit)
+  await expect(page.locator('.source-line.highlighted').first()).toBeVisible()
+  await expect(page.locator('.source-quote')).not.toBeEmpty()
+  expect(errors).toEqual([])
+})
+
+test('校区澄清重发请求并展示对应校区答案', async ({ page }) => {
+  await page.goto('/')
+  await page.getByLabel('你的校园生活问题').fill('补办学生卡在哪里？')
+  await page.getByRole('button', { name: '提交问题', exact: true }).click()
+  await expect(page.getByRole('heading', { name: '请补充信息' })).toBeVisible()
+  await page.getByLabel('海淀校区', { exact: true }).check()
+  const response = page.waitForResponse(r => r.url().endsWith('/api/v1/qa') && r.request().method() === 'POST')
+  await page.getByRole('button', { name: '确认并查询' }).click()
+  expect((await response).request().postDataJSON().campus).toBe('haidian')
+  await expect(page.locator('.answer-text')).toContainText('海淀综合服务大厅')
+})
+
+test('实体歧义确认携带原 mention 与实体 ID，实时问题明确拒答', async ({ page }) => {
+  await page.goto('/')
+  await page.getByLabel('你的校园生活问题').fill('校园卡是什么？')
+  await page.getByRole('button', { name: '提交问题', exact: true }).click()
+  await expect(page.getByRole('heading', { name: '请补充信息' })).toBeVisible()
+  await page.getByRole('radio').first().check()
+  const response = page.waitForResponse(r => r.url().endsWith('/api/v1/qa') && r.request().method() === 'POST')
+  await page.getByRole('button', { name: '确认并查询' }).click()
+  const confirmed = await response
+  expect(confirmed.request().postDataJSON().entity_bindings['校园卡']).toBeTruthy()
+  expect((await confirmed.json()).status).not.toBe('needs_clarification')
+  await expect(page.locator('.answer-loading')).toHaveCount(0)
+  await page.getByRole('button', { name: '新问题', exact: true }).click()
+  await page.getByLabel('你的校园生活问题').fill('今天图书馆开放吗？')
+  await page.getByRole('button', { name: '提交问题', exact: true }).click()
+  await expect(page.getByRole('heading', { name: '暂时无法回答' })).toBeVisible()
+})
+
+test('指南详情刷新后仍能读取真实正文', async ({ page, request }) => {
+  const { items } = await (await request.get('/api/v1/documents')).json()
+  expect(items.length).toBeGreaterThan(0)
+  await page.goto('/documents/' + items[0].id)
+  await page.reload()
+  await expect(page.locator('.document-title-block h1')).toContainText(items[0].title.split('／').at(-1))
+  await expect(page.locator('.global-error')).toHaveCount(0)
+})
+
+test('知识库同步固定提交，双模式对比调用真实 API', async ({ page, request }) => {
+  const status = await (await request.get('/api/v1/knowledge/status')).json()
+  await page.goto('/knowledge')
+  await page.getByText('指定版本', { exact: true }).click()
+  await page.getByLabel('分支或完整提交').fill(status.source_commit)
+  const sync = page.waitForResponse(r => r.url().endsWith('/api/v1/knowledge/sync'))
+  await page.getByRole('button', { name: '检查更新', exact: true }).click()
+  expect((await (await sync).json()).changed).toBe(false)
+  await expect(page.locator('.sync-result')).toContainText('没有新版本')
+  await page.goto('/lab')
+  const modes: string[] = []
+  page.on('request', r => { if (r.url().endsWith('/api/v1/qa') && r.method() === 'POST') modes.push(r.postDataJSON().mode) })
+  await page.getByRole('button', { name: '开始对比' }).click()
+  await expect(page.locator('.comparison-card')).toHaveCount(2)
+  expect(modes).toEqual(['hybrid', 'vector'])
+  await expect(page.locator('.notice.success')).toContainText('来源版本一致')
+})
+
+test('手机屏幕问答可操作且不横向溢出', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.goto('/')
+  await page.getByRole('button', { name: '多功能厅怎么预约？' }).click()
+  await expect(page.locator('.answer-text')).toContainText('网上服务大厅')
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth)
+  expect(overflow).toBe(false)
+})

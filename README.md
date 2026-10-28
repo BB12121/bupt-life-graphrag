@@ -1,8 +1,8 @@
-# 北邮生活指南 GraphRAG 后端
+# 北邮生活指南 GraphRAG
 
-面向小组合作的 FastAPI 后端。以 [byrdocs/bupt-survival-guide](https://github.com/byrdocs/bupt-survival-guide) 为唯一资料源，将 BGE 向量检索、中文 BM25、NetworkX 图查询与原文证据结合。
+面向小组合作的 Vue 3 + FastAPI 应用。以 [byrdocs/bupt-survival-guide](https://github.com/byrdocs/bupt-survival-guide) 为唯一资料源，将 BGE 向量检索、中文 BM25、NetworkX 图查询与原文证据结合。
 
-可以直接接 Vue/React 前端；不含前端页面。完整接口见 [OpenAPI](docs/openapi.json)，联调方式见 [前端接入](docs/frontend.md)。
+前端位于 `bupt-graphrag-frontend/`，默认调用真实后端，包含问答、路径、原文、知识库与检索对比页面。构建后由 FastAPI 直接提供页面，浏览器只需访问一个地址。完整接口见 [OpenAPI](docs/openapi.json)，联调方式见 [全栈运行说明](docs/integration.md)。
 
 ## 已实现
 
@@ -19,7 +19,7 @@
 
 ## 快速启动（Windows / PowerShell）
 
-推荐 Python 3.11；最低 3.11。以下命令在仓库根目录运行。
+推荐 Python 3.11；最低 3.11。前端需要 Node.js >=22.12。以下命令在仓库根目录运行。
 
 ```powershell
 uv venv --python 3.11 .venv
@@ -28,13 +28,17 @@ uv pip install --python .venv/Scripts/python.exe -e ".[dev]"
 # 首次需下载 BGE 模型和指南；默认同步设计指定的固定提交。
 .venv/Scripts/python.exe -m bupt_rag.cli sync
 
+# 构建真实接口模式的前端，无需在线大模型 API Key。
+npm --prefix bupt-graphrag-frontend ci
+npm --prefix bupt-graphrag-frontend run build
+
 # 只启动一个 worker；前台终端按 Ctrl+C 停止。
 .venv/Scripts/python.exe -m uvicorn bupt_rag.api:app --host 127.0.0.1 --port 8000 --workers 1
 ```
 
 没有 uv 时可使用 `python -m venv .venv`，随后 `.venv/Scripts/python.exe -m pip install -e ".[dev]"`。Linux/macOS 对应解释器路径为 `.venv/bin/python`。
 
-打开 [Swagger UI](http://127.0.0.1:8000/docs) 或 [健康检查](http://127.0.0.1:8000/healthz)。Windows 也可运行 `powershell -ExecutionPolicy Bypass -File scripts/start.ps1`。
+打开 [完整应用](http://127.0.0.1:8000)，接口文档在 [Swagger UI](http://127.0.0.1:8000/docs)。Windows 也可运行 `powershell -ExecutionPolicy Bypass -File scripts/start.ps1`，自动安装并构建前端后启动服务；已有构建可加 `-SkipBuild`。首次知识导入需先执行同步命令，或在页面“知识库”中检查更新。
 
 如果网络需要代理，在当前终端设置自己的 `HTTP_PROXY/HTTPS_PROXY`；不要提交代理凭据。模型下载完毕可设置 `$env:HF_HUB_OFFLINE='1'`，避免离线问答期间访问 Hugging Face。上游指南同步仍需要网络。
 
@@ -72,6 +76,7 @@ Invoke-RestMethod 'http://127.0.0.1:8000/api/v1/knowledge/sync' -Method Post `
 | 变量 | 默认值 / 用途 |
 |---|---|
 | `BUPT_DATA_DIR` | `data`，SQLite、审核记录和进程锁 |
+| `BUPT_FRONTEND_DIST` | 默认仓库内 `bupt-graphrag-frontend/dist`，可指定其他构建目录 |
 | `BUPT_EMBEDDING_MODEL` | `BAAI/bge-small-zh-v1.5`，也支持本地模型目录 |
 | `BUPT_EMBEDDING_REVISION` | 已固定的 Hugging Face commit |
 | `BUPT_CORS_ORIGINS` | `http://localhost:5173,http://127.0.0.1:5173` |
@@ -108,6 +113,8 @@ $env:BUPT_LLM_BASE_URL='http://127.0.0.1:8080/v1'
 .venv/Scripts/python.exe -m pytest -q
 .venv/Scripts/python.exe -m ruff check bupt_rag tests scripts
 .venv/Scripts/python.exe scripts/export_openapi.py
+npm --prefix bupt-graphrag-frontend test
+npm --prefix bupt-graphrag-frontend run build
 
 # 停服，且知识库使用题库指定快照
 .venv/Scripts/python.exe scripts/evaluate.py --output evaluation/results.json
@@ -127,4 +134,4 @@ SQLite 会保留历史正文和版本，长期运行后需要另行设计清理�
 
 ## 来源与许可
 
-代码与指南内容分开授权：原创后端代码使用 [MIT](LICENSE)，来源引文、事实资源、题库中的指南衍生部分遵循 **CC BY-NC-SA 4.0**，署名归 byrdocs/bupt-survival-guide 贡献者。详见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) 与上游许可证副本。整个指南、模型权重、数据库和原始小组资料不随代码提交。
+代码与指南内容分开授权：应用代码使用 [MIT](LICENSE)，来源引文、事实资源、题库和前端演示快照中的指南衍生部分遵循 **CC BY-NC-SA 4.0**，署名归 byrdocs/bupt-survival-guide 贡献者。详见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) 与上游许可证副本。模型权重、数据库、交接压缩包及原始小组任务资料不随代码提交。前端的固定版本演示快照保留在源码中，仅显式启用 demo 时使用。
