@@ -1,5 +1,7 @@
 # 北邮生活指南 GraphRAG
 
+本次更新：支持 `extract [--model]` 批量抽取、`drafts` 导出、`review` 审核与断点恢复，见 [演示流程](docs/demo.md)。默认模型为百炼 `qwen3.8-27b`，接入记录见 [模型配置](docs/model-runtime.md)。仓库根目录 `.env` 自动加载（环境变量优先）；密钥不提交到 Git。
+
 面向小组合作的 Vue 3 + FastAPI 应用。以 [byrdocs/bupt-survival-guide](https://github.com/byrdocs/bupt-survival-guide) 为唯一资料源，将 BGE 向量检索、中文 BM25、NetworkX 图查询与原文证据结合。
 
 前端位于 `bupt-graphrag-frontend/`，默认调用真实后端，包含问答、路径、原文、知识库与检索对比页面。构建后由 FastAPI 直接提供页面，浏览器只需访问一个地址。完整接口见 [OpenAPI](docs/openapi.json)，联调方式见 [全栈运行说明](docs/integration.md)。

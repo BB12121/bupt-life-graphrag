@@ -2,6 +2,10 @@ import os
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from dotenv import load_dotenv
+
+load_dotenv(Path(__file__).resolve().parents[1] / ".env", override=False)
+
 REPOSITORY = "byrdocs/bupt-survival-guide"
 SOURCE_PREFIX = "src/content/docs/"
 REFERENCE_COMMIT = "417fc690834fbc4406f48e503f5ef1f832d495db"
@@ -34,7 +38,8 @@ class Settings:
     )
     admin_key: str = field(default_factory=lambda: os.getenv("BUPT_ADMIN_KEY", ""))
     llm_base_url: str = field(default_factory=lambda: os.getenv("BUPT_LLM_BASE_URL", ""))
-    llm_model: str = field(default_factory=lambda: os.getenv("BUPT_LLM_MODEL", "qwen2.5-1.5b-instruct"))
+    llm_model: str = field(default_factory=lambda: os.getenv("BUPT_LLM_MODEL", "qwen3.8-27b"))
+    llm_api_key: str = field(default_factory=lambda: os.getenv("BUPT_LLM_API_KEY", ""), repr=False)
     max_paths: int = 50
     max_expansions: int = 1000
     context_chars: int = 12000

@@ -1,4 +1,5 @@
 import re
+import unicodedata
 
 from .models import Answer, AppError, Clarification, Option, QAResponse
 from .retrieval import scope_matches, tokenize
@@ -25,12 +26,15 @@ def campus_prompt(response):
 
 
 def mentions_in(question, entities):
+    def normalized(value):
+        return re.sub(r"\s+", "", unicodedata.normalize("NFKC", value)).casefold()
+
     matches = {}
     for entity in entities.values():
         if entity.type == "Campus":
             continue
         for name in [entity.name, *entity.aliases]:
-            if name and name.lower() in question.lower():
+            if name and normalized(name) in normalized(question):
                 matches.setdefault(name, []).append(entity)
     # Prefer a specific full name over its nested generic alias.
     return {
@@ -42,8 +46,19 @@ def mentions_in(question, entities):
 
 def plan(question, entities):
     q = question
+    for phrase, canonical in {
+        "途径": "平台",
+        "渠道": "平台",
+        "预约入口": "平台",
+        "前提": "条件",
+        "要带": "携带",
+        "何处": "哪里",
+        "坐落": "位于",
+        "都能": "共同",
+    }.items():
+        q = q.replace(phrase, canonical)
     if any(x in q for x in ("同时", "共同", "既", "交集")) and len(entities) >= 2:
-        selected = entities[:2]
+        selected = entities
         if all(e.type == "Service" for e in selected):
             return [(e, [("USES_PLATFORM", "out")]) for e in selected], True
         if all(e.type == "Platform" for e in selected):
@@ -192,10 +207,13 @@ def answer(request, snapshot, index, encoder, settings):
             for i, (entity, steps) in enumerate(plans)
         ]
         if intersection:
-            common = set(p.nodes[-1].id for p in branches[0]) & set(p.nodes[-1].id for p in branches[1])
+            common = set.intersection(*(set(p.nodes[-1].id for p in branch) for branch in branches))
             paths = [p for group in branches for p in group if p.nodes[-1].id in common]
         else:
             paths = branches[0]
+            # Explicit additional entities constrain the proof rather than being silently ignored.
+            required = {entity.id for entity in resolved[1:]}
+            paths = [p for p in paths if required <= {n.id for n in p.nodes}]
         used, accepted, char_count = {}, [], 0
         # Keep an entire intersection proof together when applying context limits.
         groups = {}
