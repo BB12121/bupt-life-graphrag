@@ -1,6 +1,6 @@
 # 北邮生活指南 GraphRAG
 
-本次更新：支持 `extract [--model]` 批量抽取、`drafts` 导出、`review` 审核与断点恢复，见 [演示流程](docs/demo.md)。默认模型为百炼 `qwen3.8-27b`，接入记录见 [模型配置](docs/model-runtime.md)。仓库根目录 `.env` 自动加载（环境变量优先）；限额演示密钥按所有者明确授权保存在已跟踪的 .env，可通过环境变量覆盖。
+本次更新：支持 `extract [--model]` 批量抽取、`drafts` 导出、`review` 审核与断点恢复，见 [演示流程](docs/demo.md)。默认模型为百炼 `qwen3.8-27b`，接入记录见 [模型配置](docs/model-runtime.md)。仓库根目录 `.env` 自动加载（环境变量优先）；`.env` 不纳入版本控制，密钥只放在本地。本地 llama.cpp 小模型接入见同一文档。
 
 面向小组合作的 Vue 3 + FastAPI 应用。以 [byrdocs/bupt-survival-guide](https://github.com/byrdocs/bupt-survival-guide) 为唯一资料源，将 BGE 向量检索、中文 BM25、NetworkX 图查询与原文证据结合。
 
