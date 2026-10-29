@@ -71,3 +71,92 @@ def test_model_error_resumes_only_explicitly(service, monkeypatch):
     assert batch_extract(service, use_model=True)["processed"] == 0
     assert len(calls) == count
     assert batch_extract(service, use_model=True, retry_errors=True)["errors"] > 0
+
+
+def drafts_of(quote, heading="测试", campus="shahe"):
+    candidate = {
+        "source_path": "src/content/docs/沙河校区/测试.md",
+        "heading": heading,
+        "quote": quote,
+        "campus": campus,
+    }
+    return [(d["subject"]["name"], d["relation"], d["object"]["name"]) for d in rule_drafts(candidate)]
+
+
+@pytest.mark.parametrize(
+    "quote, heading, expected",
+    [
+        (
+            "好邻居超市位于雁西园 3 号楼负一层",
+            "好邻居超市",
+            [("好邻居超市", "LOCATED_IN", "雁西园 3 号楼负一层")],
+        ),
+        (
+            "位于风味餐厅一楼，与肯德基相邻",
+            "其它校内餐饮 / 必胜客",
+            [("必胜客", "LOCATED_IN", "风味餐厅一楼")],
+        ),
+        (
+            "**雁北园**位于鸿雁路北侧，各区域的代号为 1-6 号楼[^1]",
+            "简介",
+            [("雁北园", "LOCATED_IN", "鸿雁路北侧")],
+        ),
+        (
+            "- **报修**：任何校内设施故障均可通过「北邮接诉即办」进行报修",
+            "企业微信",
+            [("报修", "USES_PLATFORM", "北邮接诉即办")],
+        ),
+        (
+            "校外车辆可通过网上服务大厅预约入校，到门口登记",
+            "校外 / 车辆入校",
+            [("校外车辆预约入校", "USES_PLATFORM", "网上服务大厅")],
+        ),
+        (
+            "有几个类似会议室的房间，需要通过[网上服务大厅](/学习生活/常用网站#网上服务大厅)预约",
+            "一站式多功能厅",
+            [
+                ("一站式多功能厅", "PROVIDES", "一站式多功能厅预约"),
+                ("一站式多功能厅预约", "USES_PLATFORM", "网上服务大厅"),
+            ],
+        ),
+        (
+            "就诊时须携带校园一卡通（学生卡）挂号",
+            "就医",
+            [("就医", "REQUIRES", "携带校园一卡通（学生卡）挂号")],
+        ),
+    ],
+)
+def test_real_guide_sentences(quote, heading, expected):
+    assert drafts_of(quote, heading) == expected
+
+
+def test_platform_entities_are_shared_across_campuses():
+    candidate = {
+        "source_path": "x.md",
+        "heading": "车辆入校",
+        "quote": "校外车辆可通过网上服务大厅预约入校",
+        "campus": "shahe",
+    }
+    draft = rule_drafts(candidate)[0]
+    assert (draft["subject"]["campus"], draft["object"]["campus"]) == ("shahe", "shared")
+
+
+@pytest.mark.parametrize(
+    "quote, heading",
+    [
+        ("但如需携带外人进入宿舍楼，需在宿管处登记", "门禁与宵禁"),
+        ("宿舍不提供床褥、垃圾桶、蚊帐、扫把等生活用品", "宿舍"),
+        ("位于校医院 202 室", "就医 / 医疗报销"),
+        ("海淀校区（又称西土城路校区、校本部）位于北京市海淀区", ""),
+        ("学习成绩排名与综合素质评价成绩排名均位于前 10%（含 10%）", "评优"),
+        ("可以通过迎新系统的本科生学号查询功能查询学号", "学号查询"),
+        ("通过微信公众号预约同样需要连接校园网环境", "研讨间"),
+    ],
+)
+def test_hedged_or_ill_formed_sentences_yield_nothing(quote, heading):
+    assert drafts_of(quote, heading) == []
+
+
+def test_hedged_sentence_does_not_block_others_in_paragraph():
+    quote = "宿舍不提供床褥。好邻居超市位于雁西园 3 号楼负一层。"
+    assert drafts_of(quote) == [("好邻居超市", "LOCATED_IN", "雁西园 3 号楼负一层")]
