@@ -45,6 +45,8 @@ def run():
     parser = argparse.ArgumentParser()
     parser.add_argument("--questions", type=Path, default=Path("evaluation/questions.json"))
     parser.add_argument("--output", type=Path, default=Path("evaluation/results.json"))
+    # Off by default: scores and latency then measure retrieval and extractive answers only.
+    parser.add_argument("--generate", action="store_true", help="also request model-written answers")
     args = parser.parse_args()
     gold = json.loads(args.questions.read_text(encoding="utf-8"))
     svc = KnowledgeService(Settings())
@@ -59,7 +61,7 @@ def run():
         for mode in ("hybrid", "vector"):
             for case in gold["cases"]:
                 start = time.perf_counter()
-                response = svc.ask(QARequest(**case["request"], mode=mode))
+                response = svc.ask(QARequest(**case["request"], mode=mode, generate=args.generate))
                 elapsed = time.perf_counter() - start
                 text = "\n".join(a.text for a in response.answers)
                 status_match = (

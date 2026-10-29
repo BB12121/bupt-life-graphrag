@@ -1,10 +1,12 @@
 # 北邮生活指南 GraphRAG
 
+本次更新（2026-10-29）：知识按文档局部增量更新；查询规划改为模板表；本地 Qwen2.5-1.5B-Instruct Q4_K_M（llama.cpp）已实际部署并用于候选抽取；规则抽取改为逐句判断。批量抽取、草稿导出、审核与断点恢复见 [演示流程](docs/demo.md)，模型部署记录见 [模型配置](docs/model-runtime.md)。仓库根目录 `.env` 自动加载（环境变量优先），不纳入版本控制。
+
 面向小组合作的 Vue 3 + FastAPI 应用。以 [byrdocs/bupt-survival-guide](https://github.com/byrdocs/bupt-survival-guide) 为唯一资料源，将 BGE 向量检索、中文 BM25、NetworkX 图查询与原文证据结合。
 
 前端位于 `bupt-graphrag-frontend/`，默认调用真实后端，包含问答、路径、原文、知识库与检索对比页面。构建后由 FastAPI 直接提供页面，浏览器只需访问一个地址。完整接口见 [OpenAPI](docs/openapi.json)，联调方式见 [全栈运行说明](docs/integration.md)。
 
-**成员接手请先看 [下一步任务与交接清单](docs/NEXT_STEPS.md)。当前为可运行初版，课程验收尚未全部完成；知识抽取覆盖、量化小模型实际运行和正式人工评测是下一阶段重点。**
+**成员接手请先看 [下一步任务与交接清单](docs/NEXT_STEPS.md)；负责测评的成员请看 [测评交接](docs/HANDOFF-evaluation.md)。后端功能已完成，课程验收尚未全部完成；草稿人工审核入图、正式人工评测和目标硬件资源测试是下一阶段重点。**
 
 ## 原始项目资料
 
@@ -24,7 +26,9 @@
 - `answered / partial / abstained / needs_clarification` 四类业务状态。
 - 校区与实体澄清、实时信息拒答、已审核冲突隔离、原文摘录式回答。
 - SQLite 原子发布与持久化、文档内容哈希、片段向量复用、失败回滚、旧事实撤回、重启恢复。
-- CLI 人工审核，以及可选 llama.cpp 小模型候选抽取。模型候选不会自动入图。
+- 按文档局部增量更新：只重解析/重抽取受影响文档，索引增量维护，并有与全量重建的等价性测试。
+- 规则逐句抽取 + 本地 llama.cpp 小模型补充候选（JSON schema 约束、臆造与常见错误过滤），CLI 人工审核。模型候选不会自动入图。
+- 可选 AI 回答：只依据本次检索到的原文生成，每句带 [n] 引用；引用缺失、越界或数字（时间、价格、门牌）对不上原文时自动退回原文摘录。状态、证据和图路径不受影响。
 - 72 道带固定版本原文标注的题库、两种检索模式的评测脚本、自动化工程测试、GitHub Actions。
 
 ## 快速启动（Windows / PowerShell）
@@ -81,7 +85,7 @@ Invoke-RestMethod 'http://127.0.0.1:8000/api/v1/knowledge/sync' -Method Post `
 
 ## 配置与部署
 
-配置通过环境变量读取，[.env.example](.env.example) 只是示例，不自动加载。
+配置通过环境变量读取，[.env.example](.env.example) 只是示例，自动加载仓库根目录 .env（环境变量优先）。
 
 | 变量 | 默认值 / 用途 |
 |---|---|
@@ -91,8 +95,12 @@ Invoke-RestMethod 'http://127.0.0.1:8000/api/v1/knowledge/sync' -Method Post `
 | `BUPT_EMBEDDING_REVISION` | 已固定的 Hugging Face commit |
 | `BUPT_CORS_ORIGINS` | `http://localhost:5173,http://127.0.0.1:5173` |
 | `BUPT_ADMIN_KEY` | 非空时同步接口要求 `X-Admin-Key` |
-| `BUPT_LLM_BASE_URL` | 可选本地 llama.cpp 地址，例如 `http://127.0.0.1:8080/v1` |
-| `BUPT_LLM_MODEL` | `qwen2.5-1.5b-instruct` |
+| `BUPT_LLM_BASE_URL` | 候选抽取模型地址；本地 llama.cpp 为 `http://127.0.0.1:8080/v1`（设计默认），也可填百炼等 HTTPS 兼容服务 |
+| `BUPT_LLM_MODEL` | 本地为 `qwen2.5-1.5b-instruct`（llama-server 的 `--alias`）；百炼为 `qwen3.8-27b` |
+| `BUPT_LLM_API_KEY` | 本地留空；远程服务必填 |
+| `BUPT_ANSWER_BASE_URL` | AI 回答模型地址；留空则不生成，只显示原文摘录。与抽取模型分开配置 |
+| `BUPT_ANSWER_MODEL` | 默认 `qwen2.5-1.5b-instruct`；百炼为 `qwen3.8-27b` |
+| `BUPT_ANSWER_API_KEY` | 本地留空；远程服务必填 |
 
 默认绑定回环地址。小组局域网联调时可改为 `--host 0.0.0.0`，同时设置管理密钥和允许的前端来源。本项目是本地课程后端，尚无用户系统、配额或公网部署网关。
 
@@ -106,16 +114,33 @@ API、CLI、评测不能同时占用同一数据目录：进程文件锁会拒�
 # 停服后导出候选
 .venv/Scripts/python.exe -m bupt_rag.cli pending --output data/pending.json
 
-# 可选：本机启动 Qwen2.5-1.5B-Instruct Q4_K_M 的 llama.cpp 服务后
+# 本机启动 Qwen2.5-1.5B-Instruct Q4_K_M 的 llama.cpp 服务后（启动命令见 docs/model-runtime.md）
 $env:BUPT_LLM_BASE_URL='http://127.0.0.1:8080/v1'
-.venv/Scripts/python.exe -m bupt_rag.cli suggest CANDIDATE_ID --output data/draft.json
+$env:BUPT_LLM_MODEL='qwen2.5-1.5b-instruct'
+.venv/Scripts/python.exe -m bupt_rag.cli extract --model --limit 20   # 批量：规则没有产出的段落才调用模型
+.venv/Scripts/python.exe -m bupt_rag.cli suggest CANDIDATE_ID --output data/draft.json   # 单条
 
 # 人工核对并编辑 FactRule JSON 数组，然后导入
 .venv/Scripts/python.exe -m bupt_rag.cli approve data/reviewed.json
 .venv/Scripts/python.exe -m bupt_rag.cli sync
 ```
 
-审核格式、冲突标记和安全边界见 [事实审核](docs/review.md)。LLM 仅帮助生成候选；稳定回答采用可验证的模板与原文摘录，不依赖生成模型润色。未运行本地 Qwen 的性能测试。
+审核格式、冲突标记和安全边界见 [事实审核](docs/review.md)。LLM 仅帮助生成候选；稳定回答采用可验证的模板与原文摘录，不依赖生成模型润色，问答时不调用小模型。本地 Qwen 已测抽取速度（RTX 4070 约 1.3 秒/段），内存等资源指标尚未测量。
+
+## AI 回答（可选）
+
+配置 `BUPT_ANSWER_*` 后，问答结果顶部显示“AI 总结”，原文摘录折叠在下方，点击 [n] 跳到对应原文。模型只看到本次回答的证据，在知识库锁外调用，不阻塞其他请求；失败或校验不通过时不显示 AI 总结。请求体 `generate: false` 可单次关闭。
+
+```powershell
+# 本地小模型（需先启动 llama-server，见 docs/model-runtime.md）
+$env:BUPT_ANSWER_BASE_URL='http://127.0.0.1:8080/v1'
+$env:BUPT_ANSWER_MODEL='qwen2.5-1.5b-instruct'
+# 或百炼（演示效果更好，需要 BUPT_ANSWER_API_KEY）
+$env:BUPT_ANSWER_BASE_URL='https://dashscope.aliyuncs.com/compatible-mode/v1'
+$env:BUPT_ANSWER_MODEL='qwen3.8-27b'
+```
+
+评测脚本默认不生成 AI 回答；`scripts/evaluate.py --generate` 会同时记录到结果中。
 
 ## 测试、评测与协作
 
@@ -145,3 +170,6 @@ SQLite 会保留历史正文和版本，长期运行后需要另行设计清理�
 ## 来源与许可
 
 代码与指南内容分开授权：应用代码使用 [MIT](LICENSE)，来源引文、事实资源、题库和前端演示快照中的指南衍生部分遵循 **CC BY-NC-SA 4.0**，署名归 byrdocs/bupt-survival-guide 贡献者。详见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) 与上游许可证副本。模型权重、数据库及交接压缩包不随代码提交；原始项目资料已收录，见上方入口。前端的固定版本演示快照保留在源码中，仅显式启用 demo 时使用。
+
+
+2026-10-28补充：全量39篇AI辅助覆盖记录、33条共享事实扩充、干净环境复现已完成，见 docs/knowledge-coverage.csv、docs/knowledge-review.json、docs/reproduction.md。团队人工签审与另一位成员复现仍待完成。

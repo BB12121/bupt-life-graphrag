@@ -38,6 +38,7 @@ psutil==7.2.2
 pydantic==2.14.1
 pydantic_core==2.50.1
 pytest==9.2.0
+python-dotenv==1.2.4
 regex==2026.9.29
 requests==2.34.2
 rich==15.0.0

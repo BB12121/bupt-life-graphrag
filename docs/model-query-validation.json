@@ -1,0 +1,848 @@
+{
+  "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+  "model": "qwen3.8-27b",
+  "qa_sha256": "3b2c3f4113902ddb51106a377af195294a09779bdec374020493529458c667b0",
+  "method": "Cases written after template freeze, no tuning; same-author smoke verification, not blind evaluation",
+  "model_cases": [
+    {
+      "case": "no_relation",
+      "input": {
+        "id": "no_relation",
+        "source_path": "synthetic/model-validation.md",
+        "heading": "no_relation",
+        "quote": "今天的心情很好。",
+        "campus": "shared",
+        "source_commit": "synthetic",
+        "line_start": 1,
+        "line_end": 1
+      },
+      "drafts": []
+    },
+    {
+      "case": "negation",
+      "input": {
+        "id": "negation",
+        "source_path": "synthetic/model-validation.md",
+        "heading": "negation",
+        "quote": "星光大厅不提供证件打印服务。",
+        "campus": "shared",
+        "source_commit": "synthetic",
+        "line_start": 1,
+        "line_end": 1
+      },
+      "drafts": []
+    },
+    {
+      "case": "alternative",
+      "input": {
+        "id": "alternative",
+        "source_path": "synthetic/model-validation.md",
+        "heading": "alternative",
+        "quote": "证件补办需要携带身份证或输入身份证号，二者任选其一。",
+        "campus": "shared",
+        "source_commit": "synthetic",
+        "line_start": 1,
+        "line_end": 1
+      },
+      "drafts": [
+        {
+          "source_path": "synthetic/model-validation.md",
+          "heading": "alternative",
+          "quote": "证件补办需要携带身份证或输入身份证号，二者任选其一。",
+          "subject": {
+            "name": "证件补办",
+            "type": "Service",
+            "campus": "shared",
+            "aliases": [],
+            "url": null
+          },
+          "relation": "REQUIRES",
+          "object": {
+            "name": "携带身份证或输入身份证号",
+            "type": "Condition",
+            "campus": "shared",
+            "aliases": [],
+            "url": null
+          },
+          "conflict_key": null,
+          "decision": null
+        }
+      ]
+    },
+    {
+      "case": "stage",
+      "input": {
+        "id": "stage",
+        "source_path": "synthetic/model-validation.md",
+        "heading": "stage",
+        "quote": "研讨间预约无需两人到场；实际使用研讨间时必须至少两人打卡。",
+        "campus": "shared",
+        "source_commit": "synthetic",
+        "line_start": 1,
+        "line_end": 1
+      },
+      "drafts": []
+    },
+    {
+      "case": "multiple",
+      "input": {
+        "id": "multiple",
+        "source_path": "synthetic/model-validation.md",
+        "heading": "multiple",
+        "quote": "星光大厅提供证件打印服务。证件打印通过星光平台办理。",
+        "campus": "shared",
+        "source_commit": "synthetic",
+        "line_start": 1,
+        "line_end": 1
+      },
+      "drafts": [
+        {
+          "source_path": "synthetic/model-validation.md",
+          "heading": "multiple",
+          "quote": "星光大厅提供证件打印服务。证件打印通过星光平台办理。",
+          "subject": {
+            "name": "星光大厅",
+            "type": "Place",
+            "campus": "shared",
+            "aliases": [],
+            "url": null
+          },
+          "relation": "PROVIDES",
+          "object": {
+            "name": "证件打印服务",
+            "type": "Service",
+            "campus": "shared",
+            "aliases": [],
+            "url": null
+          },
+          "conflict_key": null,
+          "decision": null
+        },
+        {
+          "source_path": "synthetic/model-validation.md",
+          "heading": "multiple",
+          "quote": "星光大厅提供证件打印服务。证件打印通过星光平台办理。",
+          "subject": {
+            "name": "证件打印服务",
+            "type": "Service",
+            "campus": "shared",
+            "aliases": [],
+            "url": null
+          },
+          "relation": "USES_PLATFORM",
+          "object": {
+            "name": "星光平台",
+            "type": "Platform",
+            "campus": "shared",
+            "aliases": [],
+            "url": null
+          },
+          "conflict_key": null,
+          "decision": null
+        }
+      ]
+    }
+  ],
+  "query_cases": [
+    {
+      "case": "two_hop",
+      "question": "劳动教育学时查询的平台需要什么条件？",
+      "passed": true,
+      "expected_status": "answered",
+      "expected_hops": 2,
+      "response": {
+        "status": "answered",
+        "reason": null,
+        "knowledge_revision": 2,
+        "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+        "answers": [
+          {
+            "text": "劳动教育学时查询通过平台本科教务管理系统；本科教务管理系统条件为校园网环境。",
+            "entity_ids": [
+              "779ccd608fde8fff9643b841",
+              "febfe5d4970620e2fbb8867c",
+              "4cddd3562a1e5190188d0c8c"
+            ],
+            "path_ids": [
+              "6a9fdadb43d727fbde10036e"
+            ],
+            "evidence_ids": [
+              "2b21501293d3c81e042e03b0",
+              "a6a2455ff2126830493d52fa"
+            ]
+          }
+        ],
+        "paths": [
+          {
+            "id": "6a9fdadb43d727fbde10036e",
+            "branch_id": 0,
+            "nodes": [
+              {
+                "id": "779ccd608fde8fff9643b841",
+                "type": "Service",
+                "name": "劳动教育学时查询",
+                "aliases": [],
+                "campus": "shared",
+                "url": null
+              },
+              {
+                "id": "febfe5d4970620e2fbb8867c",
+                "type": "Platform",
+                "name": "本科教务管理系统",
+                "aliases": [],
+                "campus": "shared",
+                "url": "https://jwgl.bupt.edu.cn"
+              },
+              {
+                "id": "4cddd3562a1e5190188d0c8c",
+                "type": "Condition",
+                "name": "校园网环境",
+                "aliases": [
+                  "校园网"
+                ],
+                "campus": "shared",
+                "url": null
+              }
+            ],
+            "edges": [
+              {
+                "subject_id": "779ccd608fde8fff9643b841",
+                "relation": "USES_PLATFORM",
+                "object_id": "febfe5d4970620e2fbb8867c",
+                "evidence_ids": [
+                  "2b21501293d3c81e042e03b0"
+                ]
+              },
+              {
+                "subject_id": "febfe5d4970620e2fbb8867c",
+                "relation": "REQUIRES",
+                "object_id": "4cddd3562a1e5190188d0c8c",
+                "evidence_ids": [
+                  "a6a2455ff2126830493d52fa"
+                ]
+              }
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "id": "2b21501293d3c81e042e03b0",
+            "doc_id": "601fdf09b4bb7a40e1e8c729",
+            "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+            "source_path": "src/content/docs/学习生活/毕业要求.md",
+            "heading": "作为毕业要求的 / 劳动教育学时[^2]",
+            "line_start": 47,
+            "line_end": 47,
+            "quote": "劳动学时可通过「本科教务管理系统」->「劳动与实践」->「劳动教育学时查询」进行查询。",
+            "source_url": "https://github.com/byrdocs/bupt-survival-guide/blob/417fc690834fbc4406f48e503f5ef1f832d495db/src/content/docs/%E5%AD%A6%E4%B9%A0%E7%94%9F%E6%B4%BB/%E6%AF%95%E4%B8%9A%E8%A6%81%E6%B1%82.md#L47-L47"
+          },
+          {
+            "id": "a6a2455ff2126830493d52fa",
+            "doc_id": "24a48dc4ee25e737da3b594b",
+            "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+            "source_path": "src/content/docs/学习生活/常用网站.md",
+            "heading": "杂项 / [本科教务管理系统](https://jwgl.bupt.edu.cn)",
+            "line_start": 102,
+            "line_end": 102,
+            "quote": "**此网站需要校园网环境**。",
+            "source_url": "https://github.com/byrdocs/bupt-survival-guide/blob/417fc690834fbc4406f48e503f5ef1f832d495db/src/content/docs/%E5%AD%A6%E4%B9%A0%E7%94%9F%E6%B4%BB/%E5%B8%B8%E7%94%A8%E7%BD%91%E7%AB%99.md#L102-L102"
+          }
+        ],
+        "warnings": [
+          "依据指南快照；不能确认实时变化。"
+        ],
+        "clarifications": []
+      }
+    },
+    {
+      "case": "reverse",
+      "question": "海淀图书馆自助打印在哪里？",
+      "passed": true,
+      "expected_status": "answered",
+      "expected_hops": 1,
+      "response": {
+        "status": "answered",
+        "reason": null,
+        "knowledge_revision": 2,
+        "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+        "answers": [
+          {
+            "text": "海淀图书馆二楼提供海淀图书馆自助打印。",
+            "entity_ids": [
+              "6cbdbea06a6c2e4b163522e2",
+              "9a1b6e5c027e0add686ebf8b"
+            ],
+            "path_ids": [
+              "bba119585ccf6f51fd2874a1"
+            ],
+            "evidence_ids": [
+              "80a6030964fcc390716f09d1"
+            ]
+          }
+        ],
+        "paths": [
+          {
+            "id": "bba119585ccf6f51fd2874a1",
+            "branch_id": 0,
+            "nodes": [
+              {
+                "id": "6cbdbea06a6c2e4b163522e2",
+                "type": "Service",
+                "name": "海淀图书馆自助打印",
+                "aliases": [],
+                "campus": "haidian",
+                "url": null
+              },
+              {
+                "id": "9a1b6e5c027e0add686ebf8b",
+                "type": "Place",
+                "name": "海淀图书馆二楼",
+                "aliases": [],
+                "campus": "haidian",
+                "url": null
+              }
+            ],
+            "edges": [
+              {
+                "subject_id": "9a1b6e5c027e0add686ebf8b",
+                "relation": "PROVIDES",
+                "object_id": "6cbdbea06a6c2e4b163522e2",
+                "evidence_ids": [
+                  "80a6030964fcc390716f09d1"
+                ]
+              }
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "id": "80a6030964fcc390716f09d1",
+            "doc_id": "6d3dc53dbe0d6373cc355fe0",
+            "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+            "source_path": "src/content/docs/海淀校区/日常活动.md",
+            "heading": "图书馆 / 自助打印",
+            "line_start": 17,
+            "line_end": 17,
+            "quote": "海淀校区图书馆二楼支持自助打印，需要自行携带电脑安装打印软件后进行打印。",
+            "source_url": "https://github.com/byrdocs/bupt-survival-guide/blob/417fc690834fbc4406f48e503f5ef1f832d495db/src/content/docs/%E6%B5%B7%E6%B7%80%E6%A0%A1%E5%8C%BA/%E6%97%A5%E5%B8%B8%E6%B4%BB%E5%8A%A8.md#L17-L17"
+          }
+        ],
+        "warnings": [
+          "依据指南快照；不能确认实时变化。"
+        ],
+        "clarifications": []
+      }
+    },
+    {
+      "case": "intersection",
+      "question": "课表查询和成绩查询有什么共同平台？",
+      "passed": true,
+      "expected_status": "answered",
+      "expected_hops": 1,
+      "response": {
+        "status": "answered",
+        "reason": null,
+        "knowledge_revision": 2,
+        "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+        "answers": [
+          {
+            "text": "共同结果：本科教务管理系统。",
+            "entity_ids": [
+              "febfe5d4970620e2fbb8867c"
+            ],
+            "path_ids": [
+              "8272684d7a58e7759862d519",
+              "21fb54c104dc6b9ff14ee344"
+            ],
+            "evidence_ids": [
+              "243e56bfdb14d7059edf960b"
+            ]
+          }
+        ],
+        "paths": [
+          {
+            "id": "8272684d7a58e7759862d519",
+            "branch_id": 0,
+            "nodes": [
+              {
+                "id": "9daaacf5c2120a310a215caf",
+                "type": "Service",
+                "name": "课表查询",
+                "aliases": [],
+                "campus": "shared",
+                "url": null
+              },
+              {
+                "id": "febfe5d4970620e2fbb8867c",
+                "type": "Platform",
+                "name": "本科教务管理系统",
+                "aliases": [],
+                "campus": "shared",
+                "url": "https://jwgl.bupt.edu.cn"
+              }
+            ],
+            "edges": [
+              {
+                "subject_id": "9daaacf5c2120a310a215caf",
+                "relation": "USES_PLATFORM",
+                "object_id": "febfe5d4970620e2fbb8867c",
+                "evidence_ids": [
+                  "243e56bfdb14d7059edf960b"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "21fb54c104dc6b9ff14ee344",
+            "branch_id": 1,
+            "nodes": [
+              {
+                "id": "4746a9bbaba73d1410a77e87",
+                "type": "Service",
+                "name": "成绩查询",
+                "aliases": [],
+                "campus": "shared",
+                "url": null
+              },
+              {
+                "id": "febfe5d4970620e2fbb8867c",
+                "type": "Platform",
+                "name": "本科教务管理系统",
+                "aliases": [],
+                "campus": "shared",
+                "url": "https://jwgl.bupt.edu.cn"
+              }
+            ],
+            "edges": [
+              {
+                "subject_id": "4746a9bbaba73d1410a77e87",
+                "relation": "USES_PLATFORM",
+                "object_id": "febfe5d4970620e2fbb8867c",
+                "evidence_ids": [
+                  "243e56bfdb14d7059edf960b"
+                ]
+              }
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "id": "243e56bfdb14d7059edf960b",
+            "doc_id": "24a48dc4ee25e737da3b594b",
+            "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+            "source_path": "src/content/docs/学习生活/常用网站.md",
+            "heading": "杂项 / [本科教务管理系统](https://jwgl.bupt.edu.cn)",
+            "line_start": 104,
+            "line_end": 104,
+            "quote": "本科教务管理系统是北邮学生查询课表、成绩、选课等信息的主要平台。**初始密码为 8 位生日**。",
+            "source_url": "https://github.com/byrdocs/bupt-survival-guide/blob/417fc690834fbc4406f48e503f5ef1f832d495db/src/content/docs/%E5%AD%A6%E4%B9%A0%E7%94%9F%E6%B4%BB/%E5%B8%B8%E7%94%A8%E7%BD%91%E7%AB%99.md#L104-L104"
+          }
+        ],
+        "warnings": [
+          "依据指南快照；不能确认实时变化。"
+        ],
+        "clarifications": []
+      }
+    },
+    {
+      "case": "missing_path",
+      "question": "海淀图书馆二楼的服务通过什么平台？",
+      "passed": true,
+      "expected_status": "abstained",
+      "expected_hops": 0,
+      "response": {
+        "status": "abstained",
+        "reason": "no_evidence",
+        "knowledge_revision": 2,
+        "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+        "answers": [],
+        "paths": [],
+        "evidence": [],
+        "warnings": [
+          "依据指南快照；不能确认实时变化。"
+        ],
+        "clarifications": []
+      }
+    },
+    {
+      "case": "unseen_1",
+      "question": "想查劳动教育学时，劳动教育学时查询的渠道有什么前提？",
+      "passed": true,
+      "expected_status": "answered",
+      "expected_hops": 2,
+      "response": {
+        "status": "answered",
+        "reason": null,
+        "knowledge_revision": 2,
+        "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+        "answers": [
+          {
+            "text": "劳动教育学时查询通过平台本科教务管理系统；本科教务管理系统条件为校园网环境。",
+            "entity_ids": [
+              "779ccd608fde8fff9643b841",
+              "febfe5d4970620e2fbb8867c",
+              "4cddd3562a1e5190188d0c8c"
+            ],
+            "path_ids": [
+              "6a9fdadb43d727fbde10036e"
+            ],
+            "evidence_ids": [
+              "2b21501293d3c81e042e03b0",
+              "a6a2455ff2126830493d52fa"
+            ]
+          }
+        ],
+        "paths": [
+          {
+            "id": "6a9fdadb43d727fbde10036e",
+            "branch_id": 0,
+            "nodes": [
+              {
+                "id": "779ccd608fde8fff9643b841",
+                "type": "Service",
+                "name": "劳动教育学时查询",
+                "aliases": [],
+                "campus": "shared",
+                "url": null
+              },
+              {
+                "id": "febfe5d4970620e2fbb8867c",
+                "type": "Platform",
+                "name": "本科教务管理系统",
+                "aliases": [],
+                "campus": "shared",
+                "url": "https://jwgl.bupt.edu.cn"
+              },
+              {
+                "id": "4cddd3562a1e5190188d0c8c",
+                "type": "Condition",
+                "name": "校园网环境",
+                "aliases": [
+                  "校园网"
+                ],
+                "campus": "shared",
+                "url": null
+              }
+            ],
+            "edges": [
+              {
+                "subject_id": "779ccd608fde8fff9643b841",
+                "relation": "USES_PLATFORM",
+                "object_id": "febfe5d4970620e2fbb8867c",
+                "evidence_ids": [
+                  "2b21501293d3c81e042e03b0"
+                ]
+              },
+              {
+                "subject_id": "febfe5d4970620e2fbb8867c",
+                "relation": "REQUIRES",
+                "object_id": "4cddd3562a1e5190188d0c8c",
+                "evidence_ids": [
+                  "a6a2455ff2126830493d52fa"
+                ]
+              }
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "id": "2b21501293d3c81e042e03b0",
+            "doc_id": "601fdf09b4bb7a40e1e8c729",
+            "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+            "source_path": "src/content/docs/学习生活/毕业要求.md",
+            "heading": "作为毕业要求的 / 劳动教育学时[^2]",
+            "line_start": 47,
+            "line_end": 47,
+            "quote": "劳动学时可通过「本科教务管理系统」->「劳动与实践」->「劳动教育学时查询」进行查询。",
+            "source_url": "https://github.com/byrdocs/bupt-survival-guide/blob/417fc690834fbc4406f48e503f5ef1f832d495db/src/content/docs/%E5%AD%A6%E4%B9%A0%E7%94%9F%E6%B4%BB/%E6%AF%95%E4%B8%9A%E8%A6%81%E6%B1%82.md#L47-L47"
+          },
+          {
+            "id": "a6a2455ff2126830493d52fa",
+            "doc_id": "24a48dc4ee25e737da3b594b",
+            "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+            "source_path": "src/content/docs/学习生活/常用网站.md",
+            "heading": "杂项 / [本科教务管理系统](https://jwgl.bupt.edu.cn)",
+            "line_start": 102,
+            "line_end": 102,
+            "quote": "**此网站需要校园网环境**。",
+            "source_url": "https://github.com/byrdocs/bupt-survival-guide/blob/417fc690834fbc4406f48e503f5ef1f832d495db/src/content/docs/%E5%AD%A6%E4%B9%A0%E7%94%9F%E6%B4%BB/%E5%B8%B8%E7%94%A8%E7%BD%91%E7%AB%99.md#L102-L102"
+          }
+        ],
+        "warnings": [
+          "依据指南快照；不能确认实时变化。"
+        ],
+        "clarifications": []
+      }
+    },
+    {
+      "case": "unseen_2",
+      "question": "海淀图书馆自助打印要带什么呢？",
+      "passed": true,
+      "expected_status": "answered",
+      "expected_hops": 1,
+      "response": {
+        "status": "answered",
+        "reason": null,
+        "knowledge_revision": 2,
+        "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+        "answers": [
+          {
+            "text": "海淀图书馆自助打印条件为自带电脑并安装打印软件。",
+            "entity_ids": [
+              "6cbdbea06a6c2e4b163522e2",
+              "a514143117f0bf1e663848ec"
+            ],
+            "path_ids": [
+              "34cccc01665d164238b6e67b"
+            ],
+            "evidence_ids": [
+              "80a6030964fcc390716f09d1"
+            ]
+          }
+        ],
+        "paths": [
+          {
+            "id": "34cccc01665d164238b6e67b",
+            "branch_id": 0,
+            "nodes": [
+              {
+                "id": "6cbdbea06a6c2e4b163522e2",
+                "type": "Service",
+                "name": "海淀图书馆自助打印",
+                "aliases": [],
+                "campus": "haidian",
+                "url": null
+              },
+              {
+                "id": "a514143117f0bf1e663848ec",
+                "type": "Condition",
+                "name": "自带电脑并安装打印软件",
+                "aliases": [],
+                "campus": "haidian",
+                "url": null
+              }
+            ],
+            "edges": [
+              {
+                "subject_id": "6cbdbea06a6c2e4b163522e2",
+                "relation": "REQUIRES",
+                "object_id": "a514143117f0bf1e663848ec",
+                "evidence_ids": [
+                  "80a6030964fcc390716f09d1"
+                ]
+              }
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "id": "80a6030964fcc390716f09d1",
+            "doc_id": "6d3dc53dbe0d6373cc355fe0",
+            "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+            "source_path": "src/content/docs/海淀校区/日常活动.md",
+            "heading": "图书馆 / 自助打印",
+            "line_start": 17,
+            "line_end": 17,
+            "quote": "海淀校区图书馆二楼支持自助打印，需要自行携带电脑安装打印软件后进行打印。",
+            "source_url": "https://github.com/byrdocs/bupt-survival-guide/blob/417fc690834fbc4406f48e503f5ef1f832d495db/src/content/docs/%E6%B5%B7%E6%B7%80%E6%A0%A1%E5%8C%BA/%E6%97%A5%E5%B8%B8%E6%B4%BB%E5%8A%A8.md#L17-L17"
+          }
+        ],
+        "warnings": [
+          "依据指南快照；不能确认实时变化。"
+        ],
+        "clarifications": []
+      }
+    },
+    {
+      "case": "unseen_3",
+      "question": "课表查询与成绩查询都能通过哪个网站办？",
+      "passed": true,
+      "expected_status": "answered",
+      "expected_hops": 1,
+      "response": {
+        "status": "answered",
+        "reason": null,
+        "knowledge_revision": 2,
+        "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+        "answers": [
+          {
+            "text": "共同结果：本科教务管理系统。",
+            "entity_ids": [
+              "febfe5d4970620e2fbb8867c"
+            ],
+            "path_ids": [
+              "8272684d7a58e7759862d519",
+              "21fb54c104dc6b9ff14ee344"
+            ],
+            "evidence_ids": [
+              "243e56bfdb14d7059edf960b"
+            ]
+          }
+        ],
+        "paths": [
+          {
+            "id": "8272684d7a58e7759862d519",
+            "branch_id": 0,
+            "nodes": [
+              {
+                "id": "9daaacf5c2120a310a215caf",
+                "type": "Service",
+                "name": "课表查询",
+                "aliases": [],
+                "campus": "shared",
+                "url": null
+              },
+              {
+                "id": "febfe5d4970620e2fbb8867c",
+                "type": "Platform",
+                "name": "本科教务管理系统",
+                "aliases": [],
+                "campus": "shared",
+                "url": "https://jwgl.bupt.edu.cn"
+              }
+            ],
+            "edges": [
+              {
+                "subject_id": "9daaacf5c2120a310a215caf",
+                "relation": "USES_PLATFORM",
+                "object_id": "febfe5d4970620e2fbb8867c",
+                "evidence_ids": [
+                  "243e56bfdb14d7059edf960b"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "21fb54c104dc6b9ff14ee344",
+            "branch_id": 1,
+            "nodes": [
+              {
+                "id": "4746a9bbaba73d1410a77e87",
+                "type": "Service",
+                "name": "成绩查询",
+                "aliases": [],
+                "campus": "shared",
+                "url": null
+              },
+              {
+                "id": "febfe5d4970620e2fbb8867c",
+                "type": "Platform",
+                "name": "本科教务管理系统",
+                "aliases": [],
+                "campus": "shared",
+                "url": "https://jwgl.bupt.edu.cn"
+              }
+            ],
+            "edges": [
+              {
+                "subject_id": "4746a9bbaba73d1410a77e87",
+                "relation": "USES_PLATFORM",
+                "object_id": "febfe5d4970620e2fbb8867c",
+                "evidence_ids": [
+                  "243e56bfdb14d7059edf960b"
+                ]
+              }
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "id": "243e56bfdb14d7059edf960b",
+            "doc_id": "24a48dc4ee25e737da3b594b",
+            "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+            "source_path": "src/content/docs/学习生活/常用网站.md",
+            "heading": "杂项 / [本科教务管理系统](https://jwgl.bupt.edu.cn)",
+            "line_start": 104,
+            "line_end": 104,
+            "quote": "本科教务管理系统是北邮学生查询课表、成绩、选课等信息的主要平台。**初始密码为 8 位生日**。",
+            "source_url": "https://github.com/byrdocs/bupt-survival-guide/blob/417fc690834fbc4406f48e503f5ef1f832d495db/src/content/docs/%E5%AD%A6%E4%B9%A0%E7%94%9F%E6%B4%BB/%E5%B8%B8%E7%94%A8%E7%BD%91%E7%AB%99.md#L104-L104"
+          }
+        ],
+        "warnings": [
+          "依据指南快照；不能确认实时变化。"
+        ],
+        "clarifications": []
+      }
+    },
+    {
+      "case": "unseen_4",
+      "question": "请问海淀图书馆自助打印在何处办理？",
+      "passed": true,
+      "expected_status": "answered",
+      "expected_hops": 1,
+      "response": {
+        "status": "answered",
+        "reason": null,
+        "knowledge_revision": 2,
+        "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+        "answers": [
+          {
+            "text": "海淀图书馆二楼提供海淀图书馆自助打印。",
+            "entity_ids": [
+              "6cbdbea06a6c2e4b163522e2",
+              "9a1b6e5c027e0add686ebf8b"
+            ],
+            "path_ids": [
+              "bba119585ccf6f51fd2874a1"
+            ],
+            "evidence_ids": [
+              "80a6030964fcc390716f09d1"
+            ]
+          }
+        ],
+        "paths": [
+          {
+            "id": "bba119585ccf6f51fd2874a1",
+            "branch_id": 0,
+            "nodes": [
+              {
+                "id": "6cbdbea06a6c2e4b163522e2",
+                "type": "Service",
+                "name": "海淀图书馆自助打印",
+                "aliases": [],
+                "campus": "haidian",
+                "url": null
+              },
+              {
+                "id": "9a1b6e5c027e0add686ebf8b",
+                "type": "Place",
+                "name": "海淀图书馆二楼",
+                "aliases": [],
+                "campus": "haidian",
+                "url": null
+              }
+            ],
+            "edges": [
+              {
+                "subject_id": "9a1b6e5c027e0add686ebf8b",
+                "relation": "PROVIDES",
+                "object_id": "6cbdbea06a6c2e4b163522e2",
+                "evidence_ids": [
+                  "80a6030964fcc390716f09d1"
+                ]
+              }
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "id": "80a6030964fcc390716f09d1",
+            "doc_id": "6d3dc53dbe0d6373cc355fe0",
+            "source_commit": "417fc690834fbc4406f48e503f5ef1f832d495db",
+            "source_path": "src/content/docs/海淀校区/日常活动.md",
+            "heading": "图书馆 / 自助打印",
+            "line_start": 17,
+            "line_end": 17,
+            "quote": "海淀校区图书馆二楼支持自助打印，需要自行携带电脑安装打印软件后进行打印。",
+            "source_url": "https://github.com/byrdocs/bupt-survival-guide/blob/417fc690834fbc4406f48e503f5ef1f832d495db/src/content/docs/%E6%B5%B7%E6%B7%80%E6%A0%A1%E5%8C%BA/%E6%97%A5%E5%B8%B8%E6%B4%BB%E5%8A%A8.md#L17-L17"
+          }
+        ],
+        "warnings": [
+          "依据指南快照；不能确认实时变化。"
+        ],
+        "clarifications": []
+      }
+    }
+  ],
+  "no_publication": true
+}

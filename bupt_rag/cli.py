@@ -31,13 +31,47 @@ def main():
     suggest_parser = sub.add_parser("suggest", help="调用本地小模型生成候选草稿，不入图")
     suggest_parser.add_argument("candidate_id")
     suggest_parser.add_argument("--output", type=Path, required=True)
+    batch = sub.add_parser("extract", help="批量规则/模型抽取，自动保存断点，不发布")
+    batch.add_argument("--model", action="store_true")
+    batch.add_argument("--retry-errors", action="store_true")
+    batch.add_argument("--limit", type=int)
+    records = sub.add_parser("drafts", help="导出带来源和审核历史的抽取记录")
+    records.add_argument("--output", type=Path, required=True)
+    decide = sub.add_parser("review", help="审核草稿；批准后仍需 sync 发布")
+    decide.add_argument("record_id")
+    decide.add_argument("decision", choices=["approved", "rejected", "text_only"])
+    decide.add_argument("--reviewer", required=True)
+    decide.add_argument("--reason", required=True)
+    decide.add_argument("--corrections", type=Path)
     args = parser.parse_args()
     service = KnowledgeService(Settings())
     try:
         if args.command == "sync":
-            emit(service.sync(args.ref))
+            result = service.sync(args.ref).model_dump()
+            emit({**result, "stats": service.last_sync_stats})
         elif args.command == "status":
             emit(service.status())
+        elif args.command == "extract":
+            from .extraction import batch_extract
+
+            if args.limit is not None and args.limit < 1:
+                raise AppError("invalid_request", "limit 必须大于零。", 422)
+            emit(batch_extract(service, args.model, args.retry_errors, args.limit))
+        elif args.command == "drafts":
+            from .extraction import export_records
+
+            export_records(service.store, args.output)
+            emit({"output": str(args.output)})
+        elif args.command == "review":
+            from .extraction import review_record
+
+            service.require_ready()
+            corrections = (
+                json.loads(args.corrections.read_text(encoding="utf-8")) if args.corrections else None
+            )
+            emit(
+                review_record(service, args.record_id, args.decision, args.reviewer, args.reason, corrections)
+            )
         elif args.command == "ask":
             emit(service.ask(QARequest(question=args.question, campus=args.campus, mode=args.mode)))
         elif args.command == "pending":
@@ -66,7 +100,7 @@ def main():
             tmp.replace(target)
             emit({"approved": len(rules), "next": "重新执行 sync 发布新知识版本，然后启动 API。"})
         elif args.command == "suggest":
-            from .llm import suggest
+            from .llm import suggest_many
 
             service.require_ready()
             candidate = next(
@@ -74,10 +108,8 @@ def main():
             )
             if candidate is None:
                 raise AppError("candidate_not_found", "候选 ID 不存在。", 404)
-            draft = suggest(candidate, service.settings)
-            args.output.write_text(
-                json.dumps([draft] if draft else [], ensure_ascii=False, indent=2), encoding="utf-8"
-            )
+            draft = suggest_many(candidate, service.settings)
+            args.output.write_text(json.dumps(draft, ensure_ascii=False, indent=2), encoding="utf-8")
             emit({"draft_file": str(args.output), "requires_human_review": True})
     except AppError as exc:
         emit({"error": {"code": exc.code, "message": exc.message}})
