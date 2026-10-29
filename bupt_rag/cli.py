@@ -47,7 +47,8 @@ def main():
     service = KnowledgeService(Settings())
     try:
         if args.command == "sync":
-            emit(service.sync(args.ref))
+            result = service.sync(args.ref).model_dump()
+            emit({**result, "stats": service.last_sync_stats})
         elif args.command == "status":
             emit(service.status())
         elif args.command == "extract":

@@ -10,7 +10,7 @@ from .knowledge import extract, extract_glossary, load_glossary, load_rules
 from .models import AppError, KnowledgeStatus, SyncResponse
 from .parsing import chunks, document, stable_id
 from .qa import answer
-from .retrieval import Index
+from .retrieval import Index, build_part
 from .source import GitHubSource
 from .storage import Store
 
@@ -32,6 +32,7 @@ class KnowledgeService:
         self.lock = threading.RLock()
         self.snapshot = self.store.latest()
         self.index = Index(self.snapshot["payload"]) if self.snapshot else None
+        self.last_sync_stats = None
 
     def close(self):
         if hasattr(self.source, "close"):
@@ -63,10 +64,16 @@ class KnowledgeService:
             rule_key = stable_id(
                 json.dumps([r.model_dump() for r in rules] + glossary, sort_keys=True, ensure_ascii=False)
             )
+            # config_key covers everything (no-op detection); parse_key alone decides chunk reuse.
             config_key = stable_id("parser-v5-all-paragraphs", self.encoder.identity, rule_key)
+            parse_key = stable_id("parser-v5-all-paragraphs", self.encoder.identity)
+            by_path = {}
+            for item in [r.model_dump() for r in rules] + glossary:
+                by_path.setdefault(item["source_path"], []).append(item)
             commit = self.source.resolve(ref)
             old = self.snapshot
             if old and old["commit_sha"] == commit and old["config_key"] == config_key:
+                self.last_sync_stats = {"index": "unchanged"}
                 return SyncResponse(
                     source_commit=commit,
                     knowledge_revision=old["revision"],
@@ -80,15 +87,35 @@ class KnowledgeService:
             if not files:
                 raise AppError("incomplete_source", "空快照不发布；请检查上游正文清单。")
             previous = old["payload"]["documents"] if old else {}
-            same_config = old is not None and old["config_key"] == config_key
+            same_parse = old is not None and old["payload"].get("parse_key") == parse_key
             cached = self.store.cached_vectors(self.encoder.identity)
             documents, pending = {}, []
             to_encode = {}
+            stats = {"parsed": 0, "extracted": 0, "relabeled": 0, "reused": 0}
+            changed_paths = set()
             for path, text in sorted(files.items()):
                 content_hash = stable_id(text)
-                if same_config and path in previous and previous[path]["content_hash"] == content_hash:
-                    record = copy.deepcopy(previous[path])
+                extract_key = stable_id(json.dumps(by_path.get(path, []), sort_keys=True, ensure_ascii=False))
+                prev = previous.get(path) if same_parse else None
+                if prev and prev["content_hash"] == content_hash:
+                    record = copy.deepcopy(prev)
                     record["document"] = document(path, text, commit).model_dump()
+                    if prev.get("extract_key") != extract_key:
+                        # Only this document's rules changed: keep its chunks, redo extraction.
+                        facts, candidates = extract(path, record["chunks"], rules)
+                        record.update(
+                            facts=facts,
+                            pending=candidates,
+                            entities=extract_glossary(path, record["chunks"], glossary),
+                            extract_key=extract_key,
+                        )
+                        stats["extracted"] += 1
+                        changed_paths.add(path)
+                    elif prev["document"]["source_commit"] != commit:
+                        stats["relabeled"] += 1
+                        changed_paths.add(path)
+                    else:
+                        stats["reused"] += 1
                 else:
                     pieces = chunks(path, text, self.encoder.token_length)
                     facts, candidates = extract(path, pieces, rules)
@@ -96,11 +123,14 @@ class KnowledgeService:
                         "document": document(path, text, commit).model_dump(),
                         "text": text,
                         "content_hash": content_hash,
+                        "extract_key": extract_key,
                         "chunks": pieces,
                         "facts": facts,
                         "pending": candidates,
                         "entities": extract_glossary(path, pieces, glossary),
                     }
+                    stats["parsed"] += 1
+                    changed_paths.add(path)
                 for c in record["chunks"]:
                     # Include the heading in embeddings to distinguish anonymous time/price paragraphs.
                     embedded_text = c["heading"] + "\n" + c["text"]
@@ -127,10 +157,33 @@ class KnowledgeService:
             for record in documents.values():
                 for c in record["chunks"]:
                     c["vector"] = cached[c["vector_key"]]
-            payload = {"documents": documents, "pending": pending, "encoder": self.encoder.identity}
-            index = Index(payload)  # Construct all indexes before the atomic publication.
+            payload = {
+                "documents": documents,
+                "pending": pending,
+                "encoder": self.encoder.identity,
+                "parse_key": parse_key,
+            }
+            removed = previous.keys() - files.keys()
+            stats["removed"] = len(removed)
+            # Everything that can fail (parsing, tokenizing, encoding) is finished before publication.
+            if same_parse and self.index is not None:
+                parts = {p: build_part(documents[p], self.index.parts.get(p)) for p in changed_paths}
+                index = None
+            else:
+                index = Index(payload)
             published = self.store.publish(commit, config_key, payload, self.encoder.identity, new_vectors)
-            self.snapshot, self.index = published, index
+            if index is None:
+                try:
+                    self.index.apply(parts, removed)
+                    stats["index"] = "delta"
+                except Exception:
+                    # Keep memory consistent with the published snapshot.
+                    self.index = Index(payload)
+                    stats["index"] = "full_fallback"
+            else:
+                self.index = index
+                stats["index"] = "full"
+            self.snapshot, self.last_sync_stats = published, stats
             return SyncResponse(
                 source_commit=commit,
                 knowledge_revision=published["revision"],
