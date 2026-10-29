@@ -30,6 +30,32 @@ def suggest_many(candidate, settings):
             "url": None,
         },
         "output_keys": ["subject", "relation", "object"],
+        "output_example": [
+            {
+                "subject": {
+                    "name": "示例服务",
+                    "type": "Service",
+                    "campus": "shared",
+                    "aliases": [],
+                    "url": None,
+                },
+                "relation": "REQUIRES",
+                "object": {
+                    "name": "携带身份证或输入身份证号",
+                    "type": "Condition",
+                    "campus": "shared",
+                    "aliases": [],
+                    "url": None,
+                },
+            }
+        ],
+        "directions": {
+            "LOCATED_IN": "Place -> Place/Campus",
+            "PROVIDES": "Place -> Service",
+            "USES_PLATFORM": "Service -> Platform",
+            "REQUIRES": "Service/Platform -> Condition",
+        },
+        "format": "顶层必须是数组，不要包装为facts或relations对象。示例只说明格式，不能复制为事实。",
         "source": candidate,
     }
     try:
