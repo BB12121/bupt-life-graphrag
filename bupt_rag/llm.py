@@ -175,7 +175,8 @@ def suggest_many(candidate, settings):
     else:
         body["enable_thinking"] = False
     try:
-        with httpx.Client(timeout=120, trust_env=False) as client:
+        # Loopback goes direct; a remote service may only be reachable through the system proxy.
+        with httpx.Client(timeout=120, trust_env=not local) as client:
             response = client.post(
                 settings.llm_base_url.rstrip("/") + "/chat/completions",
                 headers={"Authorization": f"Bearer {settings.llm_api_key}"} if settings.llm_api_key else {},

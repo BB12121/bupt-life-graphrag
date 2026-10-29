@@ -29,7 +29,7 @@ def reply(monkeypatch):
 
     def install(content):
         def post(self, url, headers=None, json=None):
-            sent.update(url=url, headers=headers, body=json)
+            sent.update(url=url, headers=headers, body=json, trust_env=self._trust_env)
             return httpx.Response(
                 200,
                 request=httpx.Request("POST", url),
@@ -52,6 +52,7 @@ def test_local_request_is_schema_constrained_few_shot(tmp_path, reply):
     body = sent["body"]
     assert body["response_format"]["json_schema"]["schema"] == OUTPUT_SCHEMA
     assert "enable_thinking" not in body
+    assert sent["trust_env"] is False
     roles = [m["role"] for m in body["messages"]]
     assert roles[0] == "system" and roles.count("assistant") >= 2 and roles[-1] == "user"
     # Only the paragraph itself is sent; ids and line numbers stay local.
@@ -69,6 +70,8 @@ def test_remote_request_keeps_provider_options(tmp_path, reply):
     settings = Settings(data_dir=tmp_path, llm_base_url="https://llm.example.com/v1", llm_api_key="test-key")
     assert len(suggest_many(CANDIDATE, settings)) == 1
     assert "response_format" not in sent["body"] and sent["body"]["enable_thinking"] is False
+    # Remote services may only be reachable through the system proxy.
+    assert sent["trust_env"] is True
 
 
 @pytest.mark.parametrize(
