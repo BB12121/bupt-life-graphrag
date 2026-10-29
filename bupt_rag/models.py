@@ -63,6 +63,14 @@ class Answer(StrictModel):
     evidence_ids: list[str] = Field(default_factory=list)
 
 
+class GeneratedAnswer(StrictModel):
+    """Readable answer written by a model from this response's evidence; [n] cites evidence n (1-based)."""
+
+    text: str
+    model: str
+    evidence_ids: list[str]
+
+
 class Option(StrictModel):
     value: str
     label: str
@@ -79,6 +87,8 @@ class QARequest(StrictModel):
     campus: SelectedCampus | None = None
     mode: Literal["hybrid", "vector"] = "hybrid"
     entity_bindings: dict[str, str] = Field(default_factory=dict)
+    # Ask for a model-written answer when one is configured; status and evidence never depend on it.
+    generate: bool = True
 
     @field_validator("question")
     @classmethod
@@ -98,6 +108,7 @@ class QAResponse(StrictModel):
     evidence: list[Evidence] = Field(default_factory=list)
     warnings: list[str] = Field(default_factory=list)
     clarifications: list[Clarification] = Field(default_factory=list)
+    generated: GeneratedAnswer | None = None
 
 
 class SyncRequest(StrictModel):

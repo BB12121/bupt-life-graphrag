@@ -3,7 +3,7 @@ import { buildDemoResponse, makeEvidence, sourceCommit } from '../src/data/demo'
 import snapshot from '../src/data/guide.json'
 import type { QARequest } from '../src/api/types'
 import { edgeDirection, safeHttpUrl, validateQA } from '../src/lib/presentation'
-import { renderExcerpt, renderMarkdown, splitAnswer } from '../src/lib/markdown'
+import { renderExcerpt, renderMarkdown, splitAnswer, splitCitations } from '../src/lib/markdown'
 const request = (question: string, extra: Partial<QARequest> = {}): QARequest => ({ question, campus: 'shahe', mode: 'hybrid', entity_bindings: {}, ...extra })
 describe('固定版本原文与证据', () => {
   it('纳入 39 篇业务正文，均使用完整且相同的固定提交', () => { expect(snapshot.documents).toHaveLength(39); expect(sourceCommit).toMatch(/^[a-f0-9]{40}$/); expect(snapshot.documents.every(x => x.document.source_commit === sourceCommit)).toBe(true) })
@@ -38,4 +38,11 @@ describe('指南摘录渲染', () => {
   it('Starlight 提示块转为带标签引用，残缺的结束标记被移除', () => { const aside = renderExcerpt(':::danger[特别注意]\n不可找人代劳。\n:::', url); expect(aside).toContain('<blockquote>'); expect(aside).toContain('危险 · 特别注意'); expect(aside).not.toContain(':::'); expect(renderExcerpt('- 校园一卡通是学生卡\n:::', url)).not.toContain(':::') })
   it('展示性 HTML 去标签保留文字，危险 HTML 仍被转义', () => { const html = renderExcerpt('<details><summary>展开</summary>内容<small>小字</small></details>\n\n<script>alert(1)</script>', url); expect(html).toContain('展开'); expect(html).not.toContain('<details>'); expect(html).not.toContain('<script>'); expect(html).toContain('&lt;script&gt;') })
   it('拆分后端文本答案的标题前缀，图答案保持原样', () => { expect(splitAnswer('指南原文（入学后 / 校园一卡通（学生卡））：\n正文')).toEqual({ heading: '入学后 / 校园一卡通（学生卡）', body: '正文' }); expect(splitAnswer('A提供B。')).toEqual({ heading: null, body: 'A提供B。' }) })
+})
+
+describe('AI 回答引用', () => {
+  it('把 [n] 拆成引用并去掉前面的空格', () => {
+    expect(splitCitations('需通过网上服务大厅预约 [1]。还需校园网[2][3]')).toEqual([{ text: '需通过网上服务大厅预约' }, { cite: 1 }, { text: '。还需校园网' }, { cite: 2 }, { cite: 3 }])
+  })
+  it('没有引用时原样返回', () => { expect(splitCitations('纯文本')).toEqual([{ text: '纯文本' }]) })
 })

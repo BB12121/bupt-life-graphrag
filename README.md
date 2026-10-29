@@ -28,6 +28,7 @@
 - SQLite 原子发布与持久化、文档内容哈希、片段向量复用、失败回滚、旧事实撤回、重启恢复。
 - 按文档局部增量更新：只重解析/重抽取受影响文档，索引增量维护，并有与全量重建的等价性测试。
 - 规则逐句抽取 + 本地 llama.cpp 小模型补充候选（JSON schema 约束、臆造与常见错误过滤），CLI 人工审核。模型候选不会自动入图。
+- 可选 AI 回答：只依据本次检索到的原文生成，每句带 [n] 引用；引用缺失、越界或数字（时间、价格、门牌）对不上原文时自动退回原文摘录。状态、证据和图路径不受影响。
 - 72 道带固定版本原文标注的题库、两种检索模式的评测脚本、自动化工程测试、GitHub Actions。
 
 ## 快速启动（Windows / PowerShell）
@@ -97,6 +98,9 @@ Invoke-RestMethod 'http://127.0.0.1:8000/api/v1/knowledge/sync' -Method Post `
 | `BUPT_LLM_BASE_URL` | 候选抽取模型地址；本地 llama.cpp 为 `http://127.0.0.1:8080/v1`（设计默认），也可填百炼等 HTTPS 兼容服务 |
 | `BUPT_LLM_MODEL` | 本地为 `qwen2.5-1.5b-instruct`（llama-server 的 `--alias`）；百炼为 `qwen3.8-27b` |
 | `BUPT_LLM_API_KEY` | 本地留空；远程服务必填 |
+| `BUPT_ANSWER_BASE_URL` | AI 回答模型地址；留空则不生成，只显示原文摘录。与抽取模型分开配置 |
+| `BUPT_ANSWER_MODEL` | 默认 `qwen2.5-1.5b-instruct`；百炼为 `qwen3.8-27b` |
+| `BUPT_ANSWER_API_KEY` | 本地留空；远程服务必填 |
 
 默认绑定回环地址。小组局域网联调时可改为 `--host 0.0.0.0`，同时设置管理密钥和允许的前端来源。本项目是本地课程后端，尚无用户系统、配额或公网部署网关。
 
@@ -122,6 +126,21 @@ $env:BUPT_LLM_MODEL='qwen2.5-1.5b-instruct'
 ```
 
 审核格式、冲突标记和安全边界见 [事实审核](docs/review.md)。LLM 仅帮助生成候选；稳定回答采用可验证的模板与原文摘录，不依赖生成模型润色，问答时不调用小模型。本地 Qwen 已测抽取速度（RTX 4070 约 1.3 秒/段），内存等资源指标尚未测量。
+
+## AI 回答（可选）
+
+配置 `BUPT_ANSWER_*` 后，问答结果顶部显示“AI 总结”，原文摘录折叠在下方，点击 [n] 跳到对应原文。模型只看到本次回答的证据，在知识库锁外调用，不阻塞其他请求；失败或校验不通过时不显示 AI 总结。请求体 `generate: false` 可单次关闭。
+
+```powershell
+# 本地小模型（需先启动 llama-server，见 docs/model-runtime.md）
+$env:BUPT_ANSWER_BASE_URL='http://127.0.0.1:8080/v1'
+$env:BUPT_ANSWER_MODEL='qwen2.5-1.5b-instruct'
+# 或百炼（演示效果更好，需要 BUPT_ANSWER_API_KEY）
+$env:BUPT_ANSWER_BASE_URL='https://dashscope.aliyuncs.com/compatible-mode/v1'
+$env:BUPT_ANSWER_MODEL='qwen3.8-27b'
+```
+
+评测脚本默认不生成 AI 回答；`scripts/evaluate.py --generate` 会同时记录到结果中。
 
 ## 测试、评测与协作
 

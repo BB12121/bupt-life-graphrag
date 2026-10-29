@@ -73,6 +73,21 @@ export function renderExcerpt(text: string, sourceUrl: string): string {
 }
 
 /** Backend text answers are "指南原文（heading）：\nquote"; split so the heading is not rendered as body. */
+export type CitedSegment = { text: string } | { cite: number }
+
+/** Split a model-written answer into plain text and [n] citations (n is 1-based into response.evidence). */
+export function splitCitations(text: string): CitedSegment[] {
+  const segments: CitedSegment[] = []
+  let last = 0
+  for (const match of text.matchAll(/\s*\[(\d+)\]/g)) {
+    if (match.index! > last) segments.push({ text: text.slice(last, match.index) })
+    segments.push({ cite: Number(match[1]) })
+    last = match.index! + match[0].length
+  }
+  if (last < text.length) segments.push({ text: text.slice(last) })
+  return segments
+}
+
 export function splitAnswer(text: string): { heading: string | null; body: string } {
   const match = text.match(/^指南原文（(.*?)）：\n([\s\S]*)$/)
   return match ? { heading: match[1], body: match[2] } : { heading: null, body: text }

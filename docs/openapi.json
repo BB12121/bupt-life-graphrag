@@ -871,6 +871,34 @@
         ],
         "title": "Evidence"
       },
+      "GeneratedAnswer": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "model": {
+            "type": "string",
+            "title": "Model"
+          },
+          "evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Evidence Ids"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "text",
+          "model",
+          "evidence_ids"
+        ],
+        "title": "GeneratedAnswer",
+        "description": "Readable answer written by a model from this response's evidence; [n] cites evidence n (1-based)."
+      },
       "GraphPath": {
         "properties": {
           "id": {
@@ -1011,6 +1039,11 @@
             },
             "type": "object",
             "title": "Entity Bindings"
+          },
+          "generate": {
+            "type": "boolean",
+            "title": "Generate",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -1085,6 +1118,16 @@
             },
             "type": "array",
             "title": "Clarifications"
+          },
+          "generated": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/GeneratedAnswer"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "additionalProperties": false,

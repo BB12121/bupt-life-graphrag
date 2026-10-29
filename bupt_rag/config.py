@@ -40,6 +40,10 @@ class Settings:
     llm_base_url: str = field(default_factory=lambda: os.getenv("BUPT_LLM_BASE_URL", ""))
     llm_model: str = field(default_factory=lambda: os.getenv("BUPT_LLM_MODEL", "qwen3.8-27b"))
     llm_api_key: str = field(default_factory=lambda: os.getenv("BUPT_LLM_API_KEY", ""), repr=False)
+    # Optional answer writer, separate from extraction so each can use a different model. Empty = off.
+    answer_base_url: str = field(default_factory=lambda: os.getenv("BUPT_ANSWER_BASE_URL", ""))
+    answer_model: str = field(default_factory=lambda: os.getenv("BUPT_ANSWER_MODEL", "qwen2.5-1.5b-instruct"))
+    answer_api_key: str = field(default_factory=lambda: os.getenv("BUPT_ANSWER_API_KEY", ""), repr=False)
     max_paths: int = 50
     max_expansions: int = 1000
     context_chars: int = 12000

@@ -6,6 +6,7 @@ from filelock import FileLock, Timeout
 
 from .config import REPOSITORY, Settings
 from .embedding import BGEEncoder
+from .generation import compose
 from .knowledge import extract, extract_glossary, load_glossary, load_rules
 from .models import AppError, KnowledgeStatus, SyncResponse
 from .parsing import chunks, document, stable_id
@@ -200,7 +201,11 @@ class KnowledgeService:
     def ask(self, request):
         with self.lock:
             self.require_ready()
-            return answer(request, self.snapshot, self.index, self.encoder, self.settings)
+            response = answer(request, self.snapshot, self.index, self.encoder, self.settings)
+        # Outside the lock: a slow model must not block other questions or a sync.
+        if request.generate and self.settings.answer_base_url:
+            response.generated = compose(request, response, self.settings)
+        return response
 
     def get_document(self, doc_id, commit=None):
         if commit:

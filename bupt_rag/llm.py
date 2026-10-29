@@ -152,39 +152,56 @@ def _plausible(rule, quote, located):
     )
 
 
-def suggest_many(candidate, settings):
-    url = urlparse(settings.llm_base_url)
-    local = url.hostname in {"localhost", "127.0.0.1", "::1"}
+def is_local(base_url):
+    return urlparse(base_url).hostname in {"localhost", "127.0.0.1", "::1"}
+
+
+def chat(base_url, api_key, body, setting="BUPT_LLM", timeout=120):
+    """POST an OpenAI-compatible chat request and return the message content."""
+    url = urlparse(base_url)
+    local = is_local(base_url)
     if not url.hostname or url.username or url.password or url.query or url.fragment:
-        raise AppError("llm_not_configured", "请配置有效的 BUPT_LLM_BASE_URL。")
+        raise AppError("llm_not_configured", f"请配置有效的 {setting}_BASE_URL。")
     if url.scheme != "https" and not (local and url.scheme == "http"):
         raise AppError("llm_not_configured", "远程模型地址必须使用 HTTPS。")
-    if not local and not settings.llm_api_key:
-        raise AppError("llm_not_configured", "远程模型需要 BUPT_LLM_API_KEY。")
+    if not local and not api_key:
+        raise AppError("llm_not_configured", f"远程模型需要 {setting}_API_KEY。")
+    if not local:
+        body = {**body, "enable_thinking": False}
+    try:
+        # Loopback goes direct; a remote service may only be reachable through the system proxy.
+        with httpx.Client(timeout=timeout, trust_env=not local) as client:
+            response = client.post(
+                base_url.rstrip("/") + "/chat/completions",
+                headers={"Authorization": f"Bearer {api_key}"} if api_key else {},
+                json=body,
+            )
+            response.raise_for_status()
+            content = response.json()["choices"][0]["message"]["content"]
+    except (httpx.HTTPError, ValueError, KeyError, IndexError, TypeError) as exc:
+        raise AppError("llm_unavailable", "模型未返回有效结果。") from exc
+    if not isinstance(content, str):
+        raise AppError("llm_unavailable", "模型未返回有效结果。")
+    return content
+
+
+def suggest_many(candidate, settings):
     body = {
         "model": settings.llm_model,
         "temperature": 0,
         "max_tokens": 1200,
         "messages": messages(candidate),
     }
-    if local:
+    if is_local(settings.llm_base_url):
         body["response_format"] = {
             "type": "json_schema",
             "json_schema": {"name": "facts", "strict": True, "schema": OUTPUT_SCHEMA},
         }
-    else:
-        body["enable_thinking"] = False
     try:
-        # Loopback goes direct; a remote service may only be reachable through the system proxy.
-        with httpx.Client(timeout=120, trust_env=not local) as client:
-            response = client.post(
-                settings.llm_base_url.rstrip("/") + "/chat/completions",
-                headers={"Authorization": f"Bearer {settings.llm_api_key}"} if settings.llm_api_key else {},
-                json=body,
-            )
-            response.raise_for_status()
-            items = parse_items(response.json()["choices"][0]["message"]["content"])
-    except (httpx.HTTPError, ValueError, KeyError, IndexError, TypeError) as exc:
+        items = parse_items(chat(settings.llm_base_url, settings.llm_api_key, body))
+    except (AppError, ValueError, KeyError, TypeError) as exc:
+        if isinstance(exc, AppError) and exc.code == "llm_not_configured":
+            raise
         raise AppError("llm_unavailable", "模型未返回有效候选；知识库未修改。") from exc
     quote = _normalized(candidate["quote"])
     results, located = [], set()
