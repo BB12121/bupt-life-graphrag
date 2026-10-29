@@ -8,6 +8,7 @@ from urllib.parse import urlparse
 import httpx
 from pydantic import ValidationError
 
+from .extraction import PLATFORM
 from .knowledge import FactRule
 from .models import AppError
 
@@ -117,13 +118,38 @@ def parse_items(content):
         return []
     if isinstance(value, dict):
         value = value["facts"] if "facts" in value else [value]
-    if not isinstance(value, list) or len(value) > 30:
+    if not isinstance(value, list) or len(value) > 30 or not all(isinstance(x, dict) for x in value):
         raise ValueError("invalid candidate array")
     return value
 
 
 def _normalized(text):
     return re.sub(r"\s+", "", unicodedata.normalize("NFKC", text)).casefold()
+
+
+# A name opening with a cue word is a clause the model copied whole, not an entity.
+CUE = re.compile(r"^(位于|需要|需|须|必须|通过|可以|可)")
+
+
+def _plausible(rule, quote, located):
+    """Cheap checks for the mistakes a 1.5B model makes most; anything kept still goes to review."""
+    subject, obj = _normalized(rule["subject"]["name"]), _normalized(rule["object"]["name"])
+    if subject == obj or CUE.match(subject) or CUE.match(obj):
+        return False
+    # Small models invent names; at least one end must be quoted from the source.
+    if subject not in quote and obj not in quote:
+        return False
+    if rule["relation"] == "LOCATED_IN":
+        # A place has one location; later LOCATED_IN items for the same subject split the sentence.
+        if subject in located:
+            return False
+        located.add(subject)
+    # Anything typed Platform must be named like one or quoted as one (「…」) in the source.
+    return all(
+        PLATFORM.search(end["name"]) or f"「{end['name']}」" in rule["quote"]
+        for end in (rule["subject"], rule["object"])
+        if end["type"] == "Platform"
+    )
 
 
 def suggest_many(candidate, settings):
@@ -160,7 +186,7 @@ def suggest_many(candidate, settings):
     except (httpx.HTTPError, ValueError, KeyError, IndexError, TypeError) as exc:
         raise AppError("llm_unavailable", "模型未返回有效候选；知识库未修改。") from exc
     quote = _normalized(candidate["quote"])
-    results, invalid = [], 0
+    results, located = [], set()
     for item in items:
         try:
             # Source path, heading and full quote are bound by the program; the model cannot change them.
@@ -173,16 +199,10 @@ def suggest_many(candidate, settings):
                 }
             ).model_dump()
         except (ValidationError, KeyError, TypeError):
-            invalid += 1
             continue
-        # Small models invent names; keep a draft only if at least one end is quoted from the source.
-        if not any(_normalized(rule[end]["name"]) in quote for end in ("subject", "object")):
-            invalid += 1
-            continue
-        if rule not in results:
+        if _plausible(rule, quote, located) and rule not in results:
             results.append(rule)
-    if invalid and not results:
-        raise AppError("llm_unavailable", "模型未返回有效候选；知识库未修改。")
+    # Dropped items are a property of the paragraph at temperature 0, not a transient failure.
     return results
 
 

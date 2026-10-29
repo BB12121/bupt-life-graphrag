@@ -101,7 +101,50 @@ def test_no_relation_is_not_an_error(tmp_path, reply):
     assert suggest_many(CANDIDATE, local(tmp_path)) == []
 
 
-def test_only_invalid_items_is_an_error(tmp_path, reply):
+def test_only_invalid_items_is_an_empty_result(tmp_path, reply):
+    # At temperature 0 a retry repeats the same output, so this is not recorded as an error.
     reply(json.dumps({"facts": [{**FACT, "relation": "USES_PLATFORM"}]}))
+    assert suggest_many(CANDIDATE, local(tmp_path)) == []
+
+
+def test_unparseable_output_is_an_error(tmp_path, reply):
+    reply("not json")
     with pytest.raises(AppError, match="模型"):
         suggest_many(CANDIDATE, local(tmp_path))
+
+
+def place(name):
+    return {"name": name, "type": "Place", "campus": "shahe"}
+
+
+def test_common_small_model_mistakes_are_dropped(tmp_path, reply):
+    candidate = {
+        **CANDIDATE,
+        "quote": "左侧衣柜位于桌侧，门上有全身镜。打印需通过「云打印」或企业微信，也可用电脑。",
+    }
+    located = [
+        {"subject": place("左侧衣柜"), "relation": "LOCATED_IN", "object": place(name)}
+        for name in ("桌侧", "全身镜")
+    ]
+    loop = {"subject": place("左侧衣柜"), "relation": "LOCATED_IN", "object": place("左侧衣柜")}
+    cue = {"subject": place("位于桌侧"), "relation": "LOCATED_IN", "object": place("全身镜")}
+
+    def uses(name):
+        return {
+            "subject": {"name": "打印", "type": "Service", "campus": "shahe"},
+            "relation": "USES_PLATFORM",
+            "object": {"name": name, "type": "Platform", "campus": "shared"},
+        }
+
+    bus = {
+        "subject": {"name": "左侧衣柜", "type": "Platform", "campus": "shared"},
+        "relation": "REQUIRES",
+        "object": {"name": "门上有全身镜", "type": "Condition", "campus": "shahe"},
+    }
+    reply(json.dumps({"facts": [loop, cue, *located, bus, uses("电脑"), uses("云打印"), uses("企业微信")]}))
+    drafts = suggest_many(candidate, local(tmp_path))
+    assert [(d["subject"]["name"], d["object"]["name"]) for d in drafts] == [
+        ("左侧衣柜", "桌侧"),
+        ("打印", "云打印"),
+        ("打印", "企业微信"),
+    ]
