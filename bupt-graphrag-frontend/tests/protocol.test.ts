@@ -3,7 +3,7 @@ import { buildDemoResponse, makeEvidence, sourceCommit } from '../src/data/demo'
 import snapshot from '../src/data/guide.json'
 import type { QARequest } from '../src/api/types'
 import { edgeDirection, safeHttpUrl, validateQA } from '../src/lib/presentation'
-import { renderMarkdown } from '../src/lib/markdown'
+import { renderExcerpt, renderMarkdown, splitAnswer } from '../src/lib/markdown'
 const request = (question: string, extra: Partial<QARequest> = {}): QARequest => ({ question, campus: 'shahe', mode: 'hybrid', entity_bindings: {}, ...extra })
 describe('固定版本原文与证据', () => {
   it('纳入 39 篇业务正文，均使用完整且相同的固定提交', () => { expect(snapshot.documents).toHaveLength(39); expect(sourceCommit).toMatch(/^[a-f0-9]{40}$/); expect(snapshot.documents.every(x => x.document.source_commit === sourceCommit)).toBe(true) })
@@ -30,4 +30,12 @@ describe('安全显示', () => {
   it('不执行 Markdown 内的 HTML/MDX、脚本或图片', () => { const html = renderMarkdown('<script>alert(1)</script>\n\n<img src=x onerror=alert(1)>\n\n<Component />\n\n![图片](https://example.com/tracker.png)', 'https://github.com/byrdocs/bupt-survival-guide/'); expect(html).not.toContain('<script>'); expect(html).not.toContain('<img '); expect(html).toContain('&lt;script&gt;'); expect(html).toContain('原文图片') })
   it('去除 frontmatter 仅用于阅读视图，不改动原始正文', () => { const body = '---\ntitle: 示例\n---\n\n正文'; expect(renderMarkdown(body, 'https://example.com/')).not.toContain('title:'); expect(body).toContain('title: 示例') })
   it('仓库内部文档链接保持固定提交，不错误跳到 GitHub 根目录', () => { const html = renderMarkdown('[校园网](/学习生活/校园网#网关账号)', 'https://github.com/byrdocs/bupt-survival-guide/blob/' + sourceCommit + '/src/content/docs/test.md'); expect(html).toContain('/blob/' + sourceCommit + '/src/content/docs/'); expect(html).toContain('.md#'); expect(html).toContain('noopener noreferrer') })
+})
+describe('指南摘录渲染', () => {
+  const url = 'https://github.com/byrdocs/bupt-survival-guide/blob/' + sourceCommit + '/src/content/docs/test.md#L1-L3'
+  it('粗体、列表正常渲染，页内锚点只保留文字', () => { const html = renderExcerpt('- **北邮联名银行卡**已在[上文](#银行卡办理和采集)提及', url); expect(html).toContain('<strong>北邮联名银行卡</strong>'); expect(html).toContain('<li>'); expect(html).toContain('上文'); expect(html).not.toContain('**'); expect(html).not.toContain('#银行卡') })
+  it('脚注引用和定义不显示原始符号，定义不被吞掉', () => { const ref = renderExcerpt('用于身份识别[^1]，需领取。', url), def = renderExcerpt('[^1]: 可使用一卡通的场景包含：大部分食堂、超市柜台。', url); expect(ref).toContain('<sup class="md-footnote">1</sup>'); expect(ref).not.toContain('[^1]'); expect(def).toContain('可使用一卡通的场景'); expect(def).not.toContain('[^1]'); expect(def).toContain('<sup class="md-footnote">1</sup>') })
+  it('Starlight 提示块转为带标签引用，残缺的结束标记被移除', () => { const aside = renderExcerpt(':::danger[特别注意]\n不可找人代劳。\n:::', url); expect(aside).toContain('<blockquote>'); expect(aside).toContain('危险 · 特别注意'); expect(aside).not.toContain(':::'); expect(renderExcerpt('- 校园一卡通是学生卡\n:::', url)).not.toContain(':::') })
+  it('展示性 HTML 去标签保留文字，危险 HTML 仍被转义', () => { const html = renderExcerpt('<details><summary>展开</summary>内容<small>小字</small></details>\n\n<script>alert(1)</script>', url); expect(html).toContain('展开'); expect(html).not.toContain('<details>'); expect(html).not.toContain('<script>'); expect(html).toContain('&lt;script&gt;') })
+  it('拆分后端文本答案的标题前缀，图答案保持原样', () => { expect(splitAnswer('指南原文（入学后 / 校园一卡通（学生卡））：\n正文')).toEqual({ heading: '入学后 / 校园一卡通（学生卡）', body: '正文' }); expect(splitAnswer('A提供B。')).toEqual({ heading: null, body: 'A提供B。' }) })
 })
