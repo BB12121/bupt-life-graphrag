@@ -1,0 +1,14 @@
+{
+  "documents": 39,
+  "paragraphs": 941,
+  "facts": 61,
+  "new_reviewed_facts": 33,
+  "source_documents": 16,
+  "entities": 87,
+  "relations": {
+    "PROVIDES": 7,
+    "USES_PLATFORM": 26,
+    "REQUIRES": 11,
+    "LOCATED_IN": 17
+  }
+}

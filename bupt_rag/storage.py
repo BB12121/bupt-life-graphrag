@@ -20,6 +20,7 @@ class Store:
                 model TEXT NOT NULL, content_hash TEXT NOT NULL, vector TEXT NOT NULL,
                 PRIMARY KEY (model, content_hash));
             CREATE TABLE IF NOT EXISTS meta (key TEXT PRIMARY KEY, value TEXT NOT NULL);
+            CREATE TABLE IF NOT EXISTS extractions (id TEXT PRIMARY KEY, payload TEXT NOT NULL);
             """)
 
     @contextmanager
@@ -40,6 +41,22 @@ class Store:
         result = dict(row)
         result["payload"] = json.loads(result["payload"])
         return result
+
+    def extraction_record(self, key):
+        with self.connect() as db:
+            row = db.execute("SELECT payload FROM extractions WHERE id=?", (key,)).fetchone()
+        return json.loads(row[0]) if row else None
+
+    def extraction_records(self):
+        with self.connect() as db:
+            return [json.loads(row[0]) for row in db.execute("SELECT payload FROM extractions ORDER BY id")]
+
+    def save_extraction(self, record):
+        with self.connect() as db:
+            db.execute(
+                "INSERT OR REPLACE INTO extractions VALUES (?,?)",
+                (record["id"], json.dumps(record, ensure_ascii=False)),
+            )
 
     def historical_document(self, doc_id, commit):
         with self.connect() as db:

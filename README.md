@@ -1,5 +1,7 @@
 # 北邮生活指南 GraphRAG
 
+本次更新：支持 `extract [--model]` 批量抽取、`drafts` 导出、`review` 审核与断点恢复，见 [演示流程](docs/demo.md)。默认模型为百炼 `qwen3.8-27b`，接入记录见 [模型配置](docs/model-runtime.md)。仓库根目录 `.env` 自动加载（环境变量优先）；限额演示密钥按所有者明确授权保存在已跟踪的 .env，可通过环境变量覆盖。
+
 面向小组合作的 Vue 3 + FastAPI 应用。以 [byrdocs/bupt-survival-guide](https://github.com/byrdocs/bupt-survival-guide) 为唯一资料源，将 BGE 向量检索、中文 BM25、NetworkX 图查询与原文证据结合。
 
 前端位于 `bupt-graphrag-frontend/`，默认调用真实后端，包含问答、路径、原文、知识库与检索对比页面。构建后由 FastAPI 直接提供页面，浏览器只需访问一个地址。完整接口见 [OpenAPI](docs/openapi.json)，联调方式见 [全栈运行说明](docs/integration.md)。
@@ -81,7 +83,7 @@ Invoke-RestMethod 'http://127.0.0.1:8000/api/v1/knowledge/sync' -Method Post `
 
 ## 配置与部署
 
-配置通过环境变量读取，[.env.example](.env.example) 只是示例，不自动加载。
+配置通过环境变量读取，[.env.example](.env.example) 只是示例，自动加载仓库根目录 .env（环境变量优先）。
 
 | 变量 | 默认值 / 用途 |
 |---|---|
@@ -92,7 +94,7 @@ Invoke-RestMethod 'http://127.0.0.1:8000/api/v1/knowledge/sync' -Method Post `
 | `BUPT_CORS_ORIGINS` | `http://localhost:5173,http://127.0.0.1:5173` |
 | `BUPT_ADMIN_KEY` | 非空时同步接口要求 `X-Admin-Key` |
 | `BUPT_LLM_BASE_URL` | 可选本地 llama.cpp 地址，例如 `http://127.0.0.1:8080/v1` |
-| `BUPT_LLM_MODEL` | `qwen2.5-1.5b-instruct` |
+| `BUPT_LLM_MODEL` | `qwen3.8-27b` |
 
 默认绑定回环地址。小组局域网联调时可改为 `--host 0.0.0.0`，同时设置管理密钥和允许的前端来源。本项目是本地课程后端，尚无用户系统、配额或公网部署网关。
 
@@ -145,3 +147,7 @@ SQLite 会保留历史正文和版本，长期运行后需要另行设计清理�
 ## 来源与许可
 
 代码与指南内容分开授权：应用代码使用 [MIT](LICENSE)，来源引文、事实资源、题库和前端演示快照中的指南衍生部分遵循 **CC BY-NC-SA 4.0**，署名归 byrdocs/bupt-survival-guide 贡献者。详见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) 与上游许可证副本。模型权重、数据库及交接压缩包不随代码提交；原始项目资料已收录，见上方入口。前端的固定版本演示快照保留在源码中，仅显式启用 demo 时使用。
+
+?????????? [?????](docs/knowledge-coverage.csv)?[??????](docs/knowledge-review.json) ? [??????](docs/reproduction.md)?
+
+2026-10-28补充：全量39篇AI辅助覆盖记录、33条共享事实扩充、干净环境复现已完成，见 docs/knowledge-coverage.csv、docs/knowledge-review.json、docs/reproduction.md。团队人工签审与另一位成员复现仍待完成；限额演示API密钥按所有者明确授权纳入 .env。

@@ -56,12 +56,14 @@ class KnowledgeService:
 
     def sync(self, ref="main"):
         with self.lock:
-            rules = load_rules(self.settings.data_dir)
+            from .extraction import approved_rules
+
+            rules = load_rules(self.settings.data_dir) + approved_rules(self.store)
             glossary = load_glossary()
             rule_key = stable_id(
                 json.dumps([r.model_dump() for r in rules] + glossary, sort_keys=True, ensure_ascii=False)
             )
-            config_key = stable_id("parser-v4", self.encoder.identity, rule_key)
+            config_key = stable_id("parser-v5-all-paragraphs", self.encoder.identity, rule_key)
             commit = self.source.resolve(ref)
             old = self.snapshot
             if old and old["commit_sha"] == commit and old["config_key"] == config_key:
@@ -109,7 +111,7 @@ class KnowledgeService:
                     if vector_key not in cached:
                         to_encode[vector_key] = embedded_text
                 documents[path] = record
-                pending.extend(record["pending"])
+                pending.extend({**c, "source_commit": commit} for c in record["pending"])
             new_vectors = {}
             if to_encode:
                 keys = list(to_encode)

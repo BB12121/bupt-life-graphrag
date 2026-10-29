@@ -92,7 +92,7 @@ def extract(path, chunks, rules):
             )
             covered.add(c["key"])
     for c in chunks:
-        if c["key"] not in covered and any(w in c["text"] for w in ("位于", "预约", "需要", "须", "提供")):
+        if c["key"] not in covered:
             pending.append(
                 {
                     "id": stable_id(path, c["key"]),
@@ -101,6 +101,7 @@ def extract(path, chunks, rules):
                     "quote": c["text"],
                     "line_start": c["line_start"],
                     "line_end": c["line_end"],
+                    "campus": c["campus"],
                     "reason": "requires_human_review",
                 }
             )
